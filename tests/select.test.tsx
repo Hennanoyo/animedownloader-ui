@@ -19,13 +19,10 @@ describe("Select", () => {
   test("opens and selects with keyboard interaction", async () => {
     const user = userEvent.setup();
     render(<Select label="Example" items={options} defaultValue="one" />);
-
     const trigger = screen.getByRole("button", { name: /Example/ });
     await user.click(trigger);
     expect(screen.getByRole("listbox")).toBeVisible();
-
     await user.keyboard("{ArrowDown}{Enter}");
-
     expect(trigger).toHaveTextContent("Two");
     expect(trigger).toHaveFocus();
   });
@@ -40,10 +37,8 @@ describe("Select", () => {
         errorMessage="Choose a valid option."
       />,
     );
-
     const trigger = screen.getByRole("button", { name: /Example/ });
     const field = trigger.closest("[data-invalid='true']");
-
     expect(screen.getByText("Choose a valid option.")).toBeInTheDocument();
     expect(field).not.toBeNull();
     expect(trigger).toHaveAccessibleName(/Example/);
@@ -52,12 +47,28 @@ describe("Select", () => {
   test("does not select disabled options", async () => {
     const user = userEvent.setup();
     render(<Select label="Example" items={options} defaultValue="one" />);
-
     const trigger = screen.getByRole("button", { name: /Example/ });
     await user.click(trigger);
     const disabled = screen.getByRole("option", { name: "Three" });
     expect(disabled).toHaveAttribute("aria-disabled", "true");
+    await user.click(disabled);
+    expect(trigger).toHaveTextContent("One");
+  });
 
+  test("preserves consumer-supplied disabled keys", async () => {
+    const user = userEvent.setup();
+    render(
+      <Select
+        label="Example"
+        items={options}
+        defaultValue="one"
+        disabledKeys={["two"]}
+      />,
+    );
+    const trigger = screen.getByRole("button", { name: /Example/ });
+    await user.click(trigger);
+    const disabled = screen.getByRole("option", { name: "Two" });
+    expect(disabled).toHaveAttribute("aria-disabled", "true");
     await user.click(disabled);
     expect(trigger).toHaveTextContent("One");
   });

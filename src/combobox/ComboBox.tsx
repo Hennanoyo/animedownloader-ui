@@ -41,6 +41,7 @@ export interface ComboBoxProps
   defaultFilter?: (textValue: string, inputValue: string) => boolean;
   allowsEmptyCollection?: boolean;
   shouldCloseOnBlur?: boolean;
+  formValue?: "text" | "key";
   className?: string;
   size?: "compact" | "default" | "prominent";
 }
@@ -58,6 +59,10 @@ export function ComboBox({
   defaultFilter,
   allowsEmptyCollection,
   shouldCloseOnBlur,
+  formValue = "key",
+  name,
+  form,
+  allowsCustomValue,
   className,
   size = "default",
   isInvalid,
@@ -79,6 +84,8 @@ export function ComboBox({
     ...disabledOptionKeys,
   ]);
   const isFieldInvalid = isInvalid ?? errorMessage != null;
+  const resolvedFormValue = allowsCustomValue ? "text" : formValue;
+  const inputName = resolvedFormValue === "text" ? name : undefined;
 
   const state = useComboBoxState<ComboBoxOption>({
     ...props,
@@ -91,6 +98,7 @@ export function ComboBox({
     disabledKeys,
     defaultFilter: defaultFilter ?? contains,
     allowsEmptyCollection,
+    allowsCustomValue,
     shouldCloseOnBlur,
     children: (item) => (
       <Item key={item.id} textValue={item.textValue}>
@@ -118,9 +126,12 @@ export function ComboBox({
       label,
       description,
       errorMessage,
+      name: inputName,
+      form,
       items: itemList,
       defaultItems: defaultItemList,
       isInvalid: isFieldInvalid,
+      allowsCustomValue,
       disabledKeys,
       inputRef,
       buttonRef,
@@ -179,6 +190,19 @@ export function ComboBox({
         </span>
       ) : null}
 
+      {resolvedFormValue === "key" && name != null ? (
+        <input
+          type="hidden"
+          name={name}
+          form={form}
+          value={
+            Array.isArray(state.value)
+              ? (state.value[0] ?? "")
+              : (state.value ?? "")
+          }
+        />
+      ) : null}
+
       {state.isOpen
         ? createPortal(
             <ComboBoxPopup
@@ -187,6 +211,7 @@ export function ComboBox({
               anchorRef={anchorRef}
               popoverRef={popoverRef}
               listBoxRef={listBoxRef}
+              shouldCloseOnBlur={shouldCloseOnBlur ?? true}
             />,
             document.body,
           )
@@ -201,6 +226,7 @@ interface ComboBoxPopupProps {
   anchorRef: RefObject<HTMLDivElement | null>;
   popoverRef: RefObject<HTMLDivElement | null>;
   listBoxRef: RefObject<HTMLUListElement | null>;
+  shouldCloseOnBlur: boolean;
 }
 
 function ComboBoxPopup({
@@ -209,13 +235,14 @@ function ComboBoxPopup({
   anchorRef,
   popoverRef,
   listBoxRef,
+  shouldCloseOnBlur,
 }: ComboBoxPopupProps) {
   const { overlayProps } = useOverlay(
     {
       isOpen: state.isOpen,
       onClose: state.close,
       isDismissable: true,
-      shouldCloseOnBlur: true,
+      shouldCloseOnBlur,
     },
     popoverRef,
   );
