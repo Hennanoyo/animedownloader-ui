@@ -15,20 +15,21 @@ Phase 6 — Integration handoff
 - Select integrated through PR #3 and validation coverage through PR #6.
 - Domain-neutral ComboBox integrated through PR #9.
 - PR #11 added the authoritative Skill discovery/selection/preflight workflow and reconciled Select/ComboBox contracts including disabledKeys, controlled collection filtering, form submission, and shouldCloseOnBlur.
-- PR #13 finalized the public package contract: Select and ComboBox are single-selection primitives, popup positioning uses React Aria useOverlayPosition, the compiled stylesheet is exposed as @animedownloader/ui/styles.css, and the animedownloader migration guide is documented.
-- PR #13 final Check and Browser CI passed.
-- Main push CI for the PR #13 merge commit passed Check and Browser.
+- PR #13 finalized the stable public API and migration contract: single-selection Select/ComboBox, React Aria overlay positioning, compiled stylesheet export, and animedownloader migration guidance.
+- PR #15 added npm package metadata and the GitHub Actions Trusted Publishing workflow for tagged releases.
+- PR #15 Check and Browser CI passed; main push CI for the merge commit also passed both checks.
+- animedownloader#383 has been updated with the migration handoff and remains blocked on the published package release.
 
 ## Next implementation boundary
-Publish the validated @animedownloader/ui 0.1.0 package and activate animedownloader#383 against that exact release.
+Complete the external npm release setup for `@animedownloader/ui` 0.1.0.
 
-Before coding:
-1. inspect GitHub live state and Issue #1;
-2. write the Skill Reference Plan for the release/integration increment before implementation;
-3. verify package build artifacts and public exports;
-4. publish the validated version;
-5. update animedownloader only after the release is consumable;
-6. preserve the rule that legacy Select/ComboBox code is removed only after adoption and application checks pass.
+Required external actions:
+1. Configure the npm Trusted Publisher for GitHub Actions using repository owner `Hennanoyo`, repository `animedownloader-ui`, workflow `publish.yml`, with direct publish allowed.
+2. Create tag `v0.1.0` on the validated main commit.
+3. Verify the publish workflow reaches terminal success and the package is available from npm.
+4. Activate `animedownloader#383` Phase 2 against that exact version.
+
+The workflow itself is repository-controlled and already validates dependency install, lint, typecheck, unit tests, build, version-tag matching, package contents, and npm publish.
 
 ## Important constraints
 - React Aria + React Stately are the low-level foundation.
@@ -38,6 +39,7 @@ Before coding:
 - The old animedownloader/web/libs/ui code is migration input, not a second long-term source of truth.
 - Skill discovery, Issue recording, and preflight are mandatory for each non-trivial implementation increment as defined in docs/development/skill-reference-workflow.md.
 - Browser CI uses CI_BROWSER_RUNNER when configured so the same self-hosted runner label can be shared with animedownloader.
+- npm publication uses a GitHub-hosted runner because npm Trusted Publishing currently does not support self-hosted runners.
 
 ## Resume rule
 Continue from Issue #1's current Phase after inspecting GitHub live state and satisfying the current increment's Skill Reference Plan/preflight.
