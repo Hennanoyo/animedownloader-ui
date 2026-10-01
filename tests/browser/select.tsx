@@ -13,11 +13,13 @@ createRoot(document.getElementById("root")!).render(
       Previously focused field
       <input aria-label="Previously focused field" />
     </label>
-    <Select
-      label="Resolution"
-      items={options}
-      defaultValue="1080p"
-      name="resolution"
-    />
+    <form onSubmit={(event) => event.preventDefault()}>
+      <Select
+        label="Resolution"
+        items={options}
+        defaultValue="1080p"
+        name="resolution"
+      />
+    </form>
   </>,
 );
