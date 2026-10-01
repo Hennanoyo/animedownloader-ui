@@ -7,6 +7,10 @@ This repository owns domain-neutral UI primitives, design tokens, accessibility/
 
 The application repository owns domain composition and end-to-end product workflows.
 
+## Official React Aria Skill
+
+For reusable UI primitive work, read `.agents/skills/react-aria/SKILL.md` before implementing behavior from memory. Use its reference map to open the exact official React Aria documentation page for unfamiliar hooks, state, collections, overlays, or component patterns. The project-specific React Aria + React Stately rules below remain authoritative for how that knowledge is applied here.
+
 ## Session entrypoint
 For a fresh unscoped continuation request, read:
 1. `docs/ai-session-protocol.md`
