@@ -24,10 +24,11 @@ Phase 6 — Integration handoff
 Complete the external npm release setup for `@animedownloader/ui` 0.1.0.
 
 Required external actions:
-1. Configure the npm Trusted Publisher for GitHub Actions using repository owner `Hennanoyo`, repository `animedownloader-ui`, workflow `publish.yml`, with direct publish allowed.
-2. Create tag `v0.1.0` on the validated main commit.
-3. Verify the publish workflow reaches terminal success and the package is available from npm.
-4. Activate `animedownloader#383` Phase 2 against that exact version.
+1. One-time bootstrap: from the validated `main` commit, manually publish `@animedownloader/ui@0.1.0` with maintainer-controlled npm credentials.
+2. Configure the npm Trusted Publisher for GitHub Actions using repository owner `Hennanoyo`, repository `animedownloader-ui`, workflow `publish.yml`, with direct publish allowed.
+3. Create tag `v0.1.0` on the validated main commit.
+4. Verify the publish workflow reaches terminal success and the package is available from npm.
+5. Activate `animedownloader#383` Phase 2 against that exact version.
 
 The workflow itself is repository-controlled and already validates dependency install, lint, typecheck, unit tests, build, version-tag matching, package contents, and npm publish.
 
