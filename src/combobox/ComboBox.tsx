@@ -38,6 +38,9 @@ export interface ComboBoxProps
   items?: Iterable<ComboBoxOption>;
   description?: ReactNode;
   errorMessage?: ReactNode;
+  defaultFilter?: (textValue: string, inputValue: string) => boolean;
+  allowsEmptyCollection?: boolean;
+  shouldCloseOnBlur?: boolean;
   className?: string;
   size?: "compact" | "default" | "prominent";
 }
@@ -52,6 +55,9 @@ export function ComboBox({
   items,
   description,
   errorMessage,
+  defaultFilter,
+  allowsEmptyCollection,
+  shouldCloseOnBlur,
   className,
   size = "default",
   isInvalid,
@@ -72,7 +78,9 @@ export function ComboBox({
     items: itemList,
     defaultItems: defaultItemList,
     isInvalid: isFieldInvalid,
-    defaultFilter: props.defaultFilter ?? contains,
+    defaultFilter: defaultFilter ?? contains,
+    allowsEmptyCollection,
+    shouldCloseOnBlur,
     children: (item) => (
       <Item key={item.id} textValue={item.textValue}>
         {item.label}
