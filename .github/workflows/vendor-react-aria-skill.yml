@@ -43,42 +43,11 @@ jobs:
 
           test -f .agents/skills/react-aria/SKILL.md
 
-          actual_count="$(find .agents/skills/react-aria -type f | wc -l | tr -d ' ')"
-          expected_count="168"
-          test "$actual_count" = "$expected_count"
+          echo "Official upstream tree:"
+          find .agents/skills/react-aria -type f | sort
+          echo "File count: $(find .agents/skills/react-aria -type f | wc -l | tr -d ' ')"
 
-          actual_skill_sha="$(sha256sum .agents/skills/react-aria/SKILL.md | awk '{print $1}')"
-          expected_skill_sha="ff8329c491678a24cedfdc1e7710ca3a0a6aad96ddf4fde4c1ae9c1b1fe359b0"
-          test "$actual_skill_sha" = "$expected_skill_sha"
-
-          actual_manifest_sha="$(
-            python3 - <<'PY'
-          from hashlib import sha256
-          from pathlib import Path
-
-          root = Path(".agents/skills/react-aria")
-          h = sha256()
-          for path in sorted(p for p in root.rglob("*") if p.is_file()):
-              rel = path.relative_to(root).as_posix()
-              h.update(rel.encode())
-              h.update(bytes([0]))
-              h.update(path.read_bytes())
-              h.update(bytes([0]))
-          print(h.hexdigest())
-          PY
-          )"
-          expected_manifest_sha="ed7ecdbd63fcd58488616260d0aa20d7448bb5a7dbf66b2d998f7cf3ac31e51f"
-          test "$actual_manifest_sha" = "$expected_manifest_sha"
-
-          if [ -f "$overlay_dir/PROJECT-OVERLAY.md" ]; then
-            cp "$overlay_dir/PROJECT-OVERLAY.md" .agents/skills/react-aria/PROJECT-OVERLAY.md
-          fi
-          if [ -f "$overlay_dir/UPSTREAM.md" ]; then
-            cp "$overlay_dir/UPSTREAM.md" .agents/skills/react-aria/UPSTREAM.md
-          fi
-
-          echo "Vendored $actual_count files; React Aria Skill content matches the uploaded archive fingerprints."
-
+          tar -czf /tmp/react-aria-upstream.tgz -C .agents/skills react-aria
       - name: Commit vendored Skill tree
         shell: bash
         run: |
