@@ -11,6 +11,7 @@ import {
   useListBox,
   useOption,
   useOverlay,
+  useOverlayPosition,
   useSelect,
 } from "react-aria";
 import { Item, useSelectState, type ListState } from "react-stately";
@@ -22,7 +23,7 @@ import type { SelectOption } from "./types";
 export interface SelectProps
   extends Omit<
     AriaSelectProps<SelectOption>,
-    "children" | "items" | "label" | "description" | "errorMessage"
+    "children" | "items" | "label" | "description" | "errorMessage" | "selectionMode"
   > {
   label: ReactNode;
   items: Iterable<SelectOption>;
@@ -170,7 +171,7 @@ function SelectPopup({
   overlayRef,
   listBoxRef,
 }: SelectPopupProps) {
-  const { overlayProps } = useOverlay(
+  const { overlayProps: dismissProps } = useOverlay(
     {
       isOpen: state.isOpen,
       onClose: state.close,
@@ -179,6 +180,15 @@ function SelectPopup({
     },
     overlayRef,
   );
+  const { overlayProps: positionProps } = useOverlayPosition({
+    targetRef: triggerRef,
+    overlayRef,
+    placement: "bottom start",
+    offset: 4,
+    isOpen: state.isOpen,
+    shouldFlip: true,
+    shouldUpdatePosition: true,
+  });
 
   const { listBoxProps } = useListBox(
     menuProps,
@@ -189,20 +199,9 @@ function SelectPopup({
   return (
     <FocusScope restoreFocus autoFocus>
       <div
-        {...overlayProps}
+        {...mergeProps(dismissProps, positionProps)}
         ref={overlayRef}
         className={styles.popover}
-        style={{
-          position: "absolute",
-          left:
-            (triggerRef.current?.getBoundingClientRect().left ?? 0) +
-            window.scrollX,
-          top:
-            (triggerRef.current?.getBoundingClientRect().bottom ?? 0) +
-            window.scrollY +
-            4,
-          width: triggerRef.current?.getBoundingClientRect().width,
-        }}
       >
         <DismissButton onDismiss={state.close} />
         <ul {...listBoxProps} ref={listBoxRef} className={styles.listBox}>

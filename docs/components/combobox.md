@@ -2,6 +2,8 @@
 
 ComboBox is a domain-neutral single-selection primitive built from React Aria and React Stately.
 
+Selection mode is intentionally fixed to `single`; the package does not expose multiple-selection mode for these primitives.
+
 ## Public data contract
 
 ~~~ts

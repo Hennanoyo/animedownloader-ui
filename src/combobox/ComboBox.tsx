@@ -12,6 +12,7 @@ import {
   useListBox,
   useOption,
   useOverlay,
+  useOverlayPosition,
 } from "react-aria";
 import { Item, useComboBoxState, type ListState } from "react-stately";
 import type { AriaComboBoxOptions } from "react-aria/useComboBox";
@@ -32,6 +33,7 @@ export interface ComboBoxProps
     | "buttonRef"
     | "listBoxRef"
     | "popoverRef"
+    | "selectionMode"
   > {
   label: ReactNode;
   defaultItems?: Iterable<ComboBoxOption>;
@@ -237,7 +239,7 @@ function ComboBoxPopup({
   listBoxRef,
   shouldCloseOnBlur,
 }: ComboBoxPopupProps) {
-  const { overlayProps } = useOverlay(
+  const { overlayProps: dismissProps } = useOverlay(
     {
       isOpen: state.isOpen,
       onClose: state.close,
@@ -246,6 +248,15 @@ function ComboBoxPopup({
     },
     popoverRef,
   );
+  const { overlayProps: positionProps } = useOverlayPosition({
+    targetRef: anchorRef,
+    overlayRef: popoverRef,
+    placement: "bottom start",
+    offset: 4,
+    isOpen: state.isOpen,
+    shouldFlip: true,
+    shouldUpdatePosition: true,
+  });
 
   const { listBoxProps: resolvedListBoxProps } = useListBox(
     listBoxProps,
@@ -253,20 +264,12 @@ function ComboBoxPopup({
     listBoxRef,
   );
 
-  const rect = anchorRef.current?.getBoundingClientRect();
-
   return (
     <FocusScope restoreFocus>
       <div
-        {...overlayProps}
+        {...mergeProps(dismissProps, positionProps)}
         ref={popoverRef}
         className={styles.popover}
-        style={{
-          position: "absolute",
-          left: (rect?.left ?? 0) + window.scrollX,
-          top: (rect?.bottom ?? 0) + window.scrollY + 4,
-          width: rect?.width,
-        }}
       >
         <DismissButton onDismiss={state.close} />
         <ul

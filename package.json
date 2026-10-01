@@ -19,7 +19,8 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./styles/tokens.scss": "./src/styles/tokens.scss"
+    "./styles/tokens.scss": "./src/styles/tokens.scss",
+    "./styles.css": "./dist/styles.css"
   },
   "files": [
     "dist",
