@@ -1,4 +1,4 @@
-import type { HTMLAttributes, ReactNode, RefObject } from "react";
+import type { ReactNode, RefObject } from "react";
 import { useRef } from "react";
 import { createPortal } from "react-dom";
 import {
@@ -14,6 +14,7 @@ import {
   useSelect,
 } from "react-aria";
 import { Item, useSelectState, type ListState } from "react-stately";
+import type { AriaListBoxOptions } from "react-aria/useListBox";
 import type { AriaSelectProps } from "react-aria/useSelect";
 import styles from "./Select.module.scss";
 import type { SelectOption } from "./types";
@@ -109,7 +110,7 @@ export function Select({
         data-pressed={state.isOpen || undefined}
       >
         <span {...valueProps} className={styles.value}>
-          {state.selectedItems[0]?.value.label ?? "Select an option"}
+          {state.selectedItems[0]?.value?.label ?? "Select an option"}
         </span>
         <span aria-hidden="true" className={styles.triggerIcon}>
           ▾
@@ -145,7 +146,7 @@ export function Select({
 
 interface SelectPopupProps {
   state: ReturnType<typeof useSelectState<SelectOption>>;
-  menuProps: HTMLAttributes<HTMLElement>;
+  menuProps: AriaListBoxOptions<SelectOption>;
   triggerRef: RefObject<HTMLButtonElement | null>;
   overlayRef: RefObject<HTMLDivElement | null>;
   listBoxRef: RefObject<HTMLUListElement | null>;
@@ -224,11 +225,11 @@ function SelectOptionRow({
     isDisabled,
     isPressed,
   } = useOption(
-    { key: item!.key },
+    { key: item.key },
     state as unknown as ListState<SelectOption>,
     ref,
   );
-  const option = item!.value;
+  const option = item.value;
 
   return (
     <li
