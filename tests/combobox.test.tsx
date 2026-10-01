@@ -6,8 +6,18 @@ import { ComboBox, type ComboBoxOption } from "../src";
 const options: ComboBoxOption[] = [
   { id: "frieren", textValue: "Frieren", label: "Frieren" },
   { id: "banana", textValue: "Banana", label: "Banana" },
-  { id: "kanganime", textValue: "KangAnime", label: "KangAnime", description: "Example description" },
-  { id: "disabled", textValue: "Disabled", label: "Disabled", isDisabled: true },
+  {
+    id: "kanganime",
+    textValue: "KangAnime",
+    label: "KangAnime",
+    description: "Example description",
+  },
+  {
+    id: "disabled",
+    textValue: "Disabled",
+    label: "Disabled",
+    isDisabled: true,
+  },
 ];
 
 describe("ComboBox", () => {
@@ -29,7 +39,12 @@ describe("ComboBox", () => {
   test("does not internally filter controlled items", async () => {
     const user = userEvent.setup();
     render(
-      <ComboBox label="Anime" items={options} inputValue="fri" onInputChange={() => undefined} />,
+      <ComboBox
+        label="Anime"
+        items={options}
+        inputValue="fri"
+        onInputChange={() => undefined}
+      />,
     );
     const trigger = screen.getByRole("button", { name: /Show suggestions/ });
     await user.click(trigger);
@@ -57,7 +72,9 @@ describe("ComboBox", () => {
         label="Anime"
         defaultItems={options}
         defaultFilter={(textValue, inputValue) =>
-          textValue.toLocaleLowerCase().startsWith(inputValue.toLocaleLowerCase())
+          textValue
+            .toLocaleLowerCase()
+            .startsWith(inputValue.toLocaleLowerCase())
         }
       />,
     );
@@ -80,14 +97,31 @@ describe("ComboBox", () => {
     expect(input).toHaveValue("dis");
   });
 
-  test("preserves consumer-supplied disabled keys", () => {
-    render(<ComboBox label="Anime" items={options} disabledKeys={["banana"]} />);
-    expect(screen.getByRole("combobox", { name: "Anime" })).toBeInTheDocument();
+  test("preserves consumer-supplied disabled keys", async () => {
+    const user = userEvent.setup();
+    render(
+      <ComboBox
+        label="Anime"
+        defaultItems={options}
+        disabledKeys={["banana"]}
+      />,
+    );
+    const input = screen.getByRole("combobox", { name: "Anime" });
+    await user.click(input);
+    const disabled = screen.getByRole("option", { name: "Banana" });
+    expect(disabled).toHaveAttribute("aria-disabled", "true");
+    await user.click(disabled);
+    expect(input).toHaveValue("");
   });
 
   test("wires validation state and error message to the field", () => {
     render(
-      <ComboBox label="Anime" defaultItems={options} isInvalid errorMessage="Choose a valid anime." />,
+      <ComboBox
+        label="Anime"
+        defaultItems={options}
+        isInvalid
+        errorMessage="Choose a valid anime."
+      />,
     );
     const input = screen.getByRole("combobox", { name: "Anime" });
     const field = input.closest("[data-invalid='true']");
@@ -132,10 +166,12 @@ describe("ComboBox", () => {
     await user.type(input, "fri");
     await user.click(screen.getByRole("option", { name: "Frieren" }));
     expect(input).not.toHaveAttribute("name");
-    expect(new FormData(screen.getByRole("combobox").closest("form") as HTMLFormElement).get("anime")).toBe("frieren");
+    expect(
+      new FormData(input.closest("form") as HTMLFormElement).get("anime"),
+    ).toBe("frieren");
   });
 
-  test("submits input text with formValue=text", async () => {
+  test("submits input text with formValue=text", () => {
     render(
       <form>
         <ComboBox
@@ -150,7 +186,9 @@ describe("ComboBox", () => {
     const input = screen.getByRole("combobox", { name: "Anime" });
     expect(input).toHaveAttribute("name", "anime");
     expect(input).toHaveValue("Frieren");
-    expect(new FormData(input.closest("form") as HTMLFormElement).get("anime")).toBe("Frieren");
+    expect(
+      new FormData(input.closest("form") as HTMLFormElement).get("anime"),
+    ).toBe("Frieren");
   });
 
   test("forces text submission for allowsCustomValue", () => {
@@ -167,6 +205,8 @@ describe("ComboBox", () => {
     );
     const input = screen.getByRole("combobox", { name: "Anime" });
     expect(input).toHaveAttribute("name", "anime");
-    expect(new FormData(input.closest("form") as HTMLFormElement).get("anime")).toBe("Custom anime");
+    expect(
+      new FormData(input.closest("form") as HTMLFormElement).get("anime"),
+    ).toBe("Custom anime");
   });
 });
