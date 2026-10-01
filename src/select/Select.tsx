@@ -53,6 +53,7 @@ export function Select({
 
   const state = useSelectState<SelectOption>({
     ...props,
+    label,
     items: itemList,
     disabledKeys,
     children: (item) => (
@@ -77,6 +78,8 @@ export function Select({
   } = useSelect(
     {
       ...props,
+      label,
+      labelElementType: "div",
       items: itemList,
       isInvalid: isInvalid ?? errorMessage != null,
     },
