@@ -80,11 +80,12 @@ describe("ComboBox", () => {
 
     const input = screen.getByRole("combobox", { name: "Anime" });
     await user.click(input);
+    await user.type(input, "dis");
     const disabled = screen.getByRole("option", { name: "Disabled" });
 
     expect(disabled).toHaveAttribute("aria-disabled", "true");
     await user.click(disabled);
-    expect(input).toHaveValue("");
+    expect(input).toHaveValue("dis");
   });
 
   test("wires validation state and error message to the field", () => {
@@ -110,6 +111,7 @@ describe("ComboBox", () => {
 
     const input = screen.getByRole("combobox", { name: "Anime" });
     await user.click(input);
+    await user.type(input, "f");
     expect(screen.getByRole("listbox")).toBeVisible();
 
     await user.keyboard("{Escape}");
