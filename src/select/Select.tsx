@@ -47,9 +47,10 @@ export function Select({
   ...props
 }: SelectProps) {
   const itemList = Array.from(items);
-  const disabledKeys = new Set(
-    itemList.filter((item) => item.isDisabled).map((item) => item.id),
-  );
+  const disabledKeys = new Set([
+    ...(props.disabledKeys ?? []),
+    ...itemList.filter((item) => item.isDisabled).map((item) => item.id),
+  ]);
 
   const state = useSelectState<SelectOption>({
     ...props,
