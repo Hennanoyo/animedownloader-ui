@@ -7,7 +7,8 @@ test.describe("ComboBox", () => {
 
   test("opens and filters the collection", async ({ page }) => {
     const input = page.getByRole("combobox", { name: "Anime" });
-    await input.click();
+    const trigger = page.getByRole("button", { name: /Show suggestions/ });
+    await trigger.click();
     await expect(page.getByRole("listbox")).toBeVisible();
 
     await input.fill("fri");
@@ -18,7 +19,8 @@ test.describe("ComboBox", () => {
 
   test("selects with keyboard and restores focus", async ({ page }) => {
     const input = page.getByRole("combobox", { name: "Anime" });
-    await input.click();
+    const trigger = page.getByRole("button", { name: /Show suggestions/ });
+    await trigger.click();
     await input.fill("one");
     await page.keyboard.press("ArrowDown");
     await page.keyboard.press("Enter");
@@ -29,8 +31,8 @@ test.describe("ComboBox", () => {
   });
 
   test("exposes disabled option semantics", async ({ page }) => {
-    const input = page.getByRole("combobox", { name: "Anime" });
-    await input.click();
+    const trigger = page.getByRole("button", { name: /Show suggestions/ });
+    await trigger.click();
 
     const disabled = page.getByRole("option", { name: "Disabled" });
     await expect(disabled).toHaveAttribute("aria-disabled", "true");
@@ -38,7 +40,8 @@ test.describe("ComboBox", () => {
 
   test("dismisses the popup with Escape", async ({ page }) => {
     const input = page.getByRole("combobox", { name: "Anime" });
-    await input.click();
+    const trigger = page.getByRole("button", { name: /Show suggestions/ });
+    await trigger.click();
     await expect(page.getByRole("listbox")).toBeVisible();
 
     await page.keyboard.press("Escape");
