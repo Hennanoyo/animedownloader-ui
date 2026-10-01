@@ -95,9 +95,9 @@ export function Select({
       data-disabled={props.isDisabled || undefined}
       data-open={state.isOpen || undefined}
     >
-      <label {...labelProps} className={styles.label}>
+      <div {...labelProps} className={styles.label}>
         {label}
-      </label>
+      </div>
 
       <HiddenSelect {...hiddenSelectProps} />
 
