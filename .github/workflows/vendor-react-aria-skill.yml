@@ -48,6 +48,12 @@ jobs:
           echo "File count: $(find .agents/skills/react-aria -type f | wc -l | tr -d ' ')"
 
           tar -czf /tmp/react-aria-upstream.tgz -C .agents/skills react-aria
+
+      - name: Upload generated Skill tree
+        uses: actions/upload-artifact@v4
+        with:
+          name: react-aria-upstream-tree
+          path: /tmp/react-aria-upstream.tgz
       - name: Commit vendored Skill tree
         shell: bash
         run: |
