@@ -29,7 +29,7 @@ Initialize a `User` once per test file. Call `createTester` to get a tester for 
 ```ts
 import {User} from '@react-aria/test-utils';
 
-// Provide whatever method of advancing timers you use, this example assumes Jest with fake timers.
+// Provide whatever method of advancing timers you use in your test, this example assumes Jest with fake timers.
 // 'interactionType' specifies what mode of interaction should be simulated by the tester
 // 'advanceTimer' is used by the tester to advance the timers in the tests for specific interactions (e.g. long press)
 let testUtilUser = new User({interactionType: 'mouse', advanceTimer: jest.advanceTimersByTime});
@@ -62,7 +62,7 @@ afterEach(() => {
 - You can still simulate interactions manually in your test alongside the utilities provided by the tester. This can come in handy if you find that the tester doesn't cover a specific user flow or if one of its utilities isn't quite working as expected. After simulating your interaction, you can still
 use the tester to query for the component's state or trigger a different interaction utility.
 - Mouse drag interactions, simulated scrolling, and other mock reliant interactions are not available in these test utils since they depend heavily on how the user mocks things like clientHeight/Width/etc in their tests. These interactions need to be simulated manually by the user.
-- Some testers may support the notion of 'long press' for certain interactions (e.g. long pressing a button to trigger its menu). To simulate this, you will need mock PointerEvent globally (see the installPointerEvent util) and provide a way to advance timers to the User via `advanceTimer`.
+- Some testers may support the notion of "long press" for certain interactions (e.g. long pressing a button to trigger its menu). To simulate this, you will need mock PointerEvent globally (see the installPointerEvent util) and provide a way to advance timers to the User via `advanceTimer`.
 - These test utils are compatible with not only JSDOM unit tests but browser tests as well (e.g. vitest-browser-react).
 - Methods that accept a target (`option`, `row`, `column`, `checkbox`, `radio`, `tab`) take a `number` (index), `string` (text content), or `HTMLElement`. Use the tester's own query methods (e.g. `getRows()`, `getOptions()`) to obtain an `HTMLElement` when you need one.
 - Link navigation assertions must be simulated manually. The testers do not assert navigation side effects.
@@ -96,17 +96,17 @@ beforeAll(() => {
 
 | Pattern name | Component | Key methods |
 |---|---|---|
-| 'CheckboxGroup' | CheckboxGroup | `getCheckboxGroup()`, `getCheckboxes()`, `getSelectedCheckboxes()`, `toggleCheckbox({checkbox})` |
-| 'ComboBox' | ComboBox | `getCombobox()`, `getListbox()`, `getOptions()`, `open()`, `toggleOptionSelection({option})` |
-| 'Dialog' | Modal, Popover | `getTrigger()`, `getDialog()`, `open()`, `close()` — pass `overlayType: 'modal'` or `'popover'` to `createTester` |
-| 'GridList' | GridList | `getGridlist()`, `getRows()`, `getSelectedRows()`, `toggleRowSelection({row})`, `triggerRowAction({row})` |
-| 'ListBox' | ListBox | `getListbox()`, `getOptions()`, `getSelectedOptions()`, `toggleOptionSelection({option})`, `triggerOptionAction({option})` |
-| 'Menu' | Menu | `getTrigger()`, `getMenu()`, `getOptions()`, `open()`, `toggleOptionSelection({option})`, `openSubmenu({submenuTrigger})`, `close()` |
-| 'RadioGroup' | RadioGroup | `getRadioGroup()`, `getRadios()`, `getSelectedRadio()`, `triggerRadio({radio})` |
-| 'Select' | Select | `getTrigger()`, `getListbox()`, `getOptions()`, `toggleOptionSelection({option})` |
-| 'Table' | Table | `getTable()`, `getRows()`, `getFooterRows()`, `getColumns()`, `getSelectedRows()`, `toggleRowSelection({row})`, `toggleSort({column})`, `triggerRowAction({row})` |
-| 'Tabs' | Tabs | `getTablist()`, `getTabs()`, `getTabpanels()`, `getSelectedTab()`, `triggerTab({tab})` |
-| 'Tree' | Tree | `getTree()`, `getRows()`, `getSelectedRows()`, `toggleRowSelection({row})`, `toggleRowExpansion({row})`, `triggerRowAction({row})` |
+| `'CheckboxGroup'` | CheckboxGroup | `getCheckboxGroup()`, `getCheckboxes()`, `getSelectedCheckboxes()`, `toggleCheckbox({checkbox})` |
+| `'ComboBox'` | ComboBox | `getCombobox()`, `getListbox()`, `getOptions()`, `open()`, `toggleOptionSelection({option})` |
+| `'Dialog'` | Modal, Popover | `getTrigger()`, `getDialog()`, `open()`, `close()` — pass `overlayType: 'modal'` or `'popover'` to `createTester` |
+| `'GridList'` | GridList | `getGridlist()`, `getRows()`, `getSelectedRows()`, `toggleRowSelection({row})`, `triggerRowAction({row})` |
+| `'ListBox'` | ListBox | `getListbox()`, `getOptions()`, `getSelectedOptions()`, `toggleOptionSelection({option})`, `triggerOptionAction({option})` |
+| `'Menu'` | Menu | `getTrigger()`, `getMenu()`, `getOptions()`, `open()`, `toggleOptionSelection({option})`, `openSubmenu({submenuTrigger})`, `close()` |
+| `'RadioGroup'` | RadioGroup | `getRadioGroup()`, `getRadios()`, `getSelectedRadio()`, `triggerRadio({radio})` |
+| `'Select'` | Select | `getTrigger()`, `getListbox()`, `getOptions()`, `toggleOptionSelection({option})` |
+| `'Table'` | Table | `getTable()`, `getRows()`, `getFooterRows()`, `getColumns()`, `getSelectedRows()`, `toggleRowSelection({row})`, `toggleSort({column})`, `triggerRowAction({row})` |
+| `'Tabs'` | Tabs | `getTablist()`, `getTabs()`, `getTabpanels()`, `getSelectedTab()`, `triggerTab({tab})` |
+| `'Tree'` | Tree | `getTree()`, `getRows()`, `getSelectedRows()`, `toggleRowSelection({row})`, `toggleRowExpansion({row})`, `triggerRowAction({row})` |
 
 ### Per-component reference
 
@@ -155,6 +155,7 @@ Available components: Autocomplete, Breadcrumbs, Button, Calendar, Checkbox, Che
 - [useDrag](references/interactions/useDrag.md): Handles drag interactions for an element, with support for traditional mouse and touch
 - [useDraggableCollection](references/interactions/useDraggableCollection.md): Handles drag interactions for a collection component, with support for traditional mouse and
 - [useDrop](references/interactions/useDrop.md): Handles drop interactions for an element, with support for traditional mouse and touch
+- [useDroppableCollection](references/interactions/useDroppableCollection.md): Handles drop interactions for a collection component, with support for traditional mouse and
 - [useFocus](references/interactions/useFocus.md): Handles focus events for the immediate target.
 - [useFocusRing](references/interactions/useFocusRing.md): Determines whether a focus ring should be shown to indicate keyboard focus.
 - [useFocusVisible](references/interactions/useFocusVisible.md): Manages focus visible state for the page, and subscribes individual components for updates.
@@ -173,7 +174,7 @@ Available components: Autocomplete, Breadcrumbs, Button, Calendar, Checkbox, Che
 - [SSRProvider](references/utilities/SSRProvider.md): When using SSR with React Aria in React 16 or 17, applications must be wrapped in an SSRProvider.
 - [useAsyncList](references/utilities/useAsyncList.md): Manages state for an immutable async loaded list data structure, and provides convenience methods
 - [useCollator](references/utilities/useCollator.md): Provides localized string collation for the current locale. Automatically updates when the locale
-- [useDateFormatter](references/utilities/useDateFormatter.md): Provides localized date formatting for the current locale. Automatically updates when the
+- [useDateFormatter](references/utilities/useDateFormatter.md): Provides localized date formatting for the current locale. Automatically updates when the locale
 - [useField](references/utilities/useField.md): Provides the accessibility implementation for input fields. Fields accept user input, gain
 - [useFilter](references/utilities/useFilter.md): Provides localized string search functionality that is useful for filtering or matching items in
 - [useId](references/utilities/useId.md): If a default is not provided, generate an id.
@@ -193,6 +194,7 @@ Available components: Autocomplete, Breadcrumbs, Button, Calendar, Checkbox, Che
 - [CalendarDateTime](references/internationalized/date/CalendarDateTime.md)
 - [DateFormatter](references/internationalized/date/DateFormatter.md)
 - [Internationalized Date](references/internationalized/date/index.md)
+- [Internationalized Number](references/internationalized/number/index.md)
 - [NumberFormatter](references/internationalized/number/NumberFormatter.md)
 - [NumberParser](references/internationalized/number/NumberParser.md)
 - [Time](references/internationalized/date/Time.md)
