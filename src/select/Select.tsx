@@ -79,7 +79,6 @@ export function Select({
     {
       ...props,
       label,
-      labelElementType: "div",
       items: itemList,
       isInvalid: isInvalid ?? errorMessage != null,
     },
@@ -98,9 +97,9 @@ export function Select({
       data-disabled={props.isDisabled || undefined}
       data-open={state.isOpen || undefined}
     >
-      <div {...labelProps} className={styles.label}>
+      <label {...labelProps} className={styles.label}>
         {label}
-      </div>
+      </label>
 
       <HiddenSelect {...hiddenSelectProps} />
 
