@@ -44,6 +44,13 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Verify version tag
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          test "$TAG" = "v$VERSION"
+
       - name: Verify package contents
         run: npm pack --dry-run
 
