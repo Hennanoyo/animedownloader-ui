@@ -1,0 +1,94 @@
+name: Vendor React Aria Agent Skill
+
+on:
+  push:
+    branches:
+      - chore/sync-react-aria-skill-source
+
+permissions:
+  contents: write
+
+jobs:
+  vendor:
+    if: github.event.head_commit.message != 'chore(agent): vendor exact React Aria Skill tree'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Vendor upstream React Aria Skill
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          overlay_dir="$(mktemp -d)"
+          if [ -f .agents/skills/react-aria/PROJECT-OVERLAY.md ]; then
+            cp .agents/skills/react-aria/PROJECT-OVERLAY.md "$overlay_dir/PROJECT-OVERLAY.md"
+          fi
+          if [ -f .agents/skills/react-aria/UPSTREAM.md ]; then
+            cp .agents/skills/react-aria/UPSTREAM.md "$overlay_dir/UPSTREAM.md"
+          fi
+
+          rm -rf .agents/skills/react-aria
+
+          npx --yes skills@latest add https://react-aria.adobe.com \
+            --skill react-aria \
+            --copy \
+            -a codex \
+            -y
+
+          test -f .agents/skills/react-aria/SKILL.md
+
+          actual_count="$(find .agents/skills/react-aria -type f | wc -l | tr -d ' ')"
+          expected_count="168"
+          test "$actual_count" = "$expected_count"
+
+          actual_skill_sha="$(sha256sum .agents/skills/react-aria/SKILL.md | awk '{print $1}')"
+          expected_skill_sha="ff8329c491678a24cedfdc1e7710ca3a0a6aad96ddf4fde4c1ae9c1b1fe359b0"
+          test "$actual_skill_sha" = "$expected_skill_sha"
+
+          actual_manifest_sha="$(
+            python3 - <<'PY'
+          from hashlib import sha256
+          from pathlib import Path
+
+          root = Path(".agents/skills/react-aria")
+          h = sha256()
+          for path in sorted(p for p in root.rglob("*") if p.is_file()):
+              rel = path.relative_to(root).as_posix()
+              h.update(rel.encode())
+              h.update(b"\\0")
+              h.update(path.read_bytes())
+              h.update(b"\\0")
+          print(h.hexdigest())
+          PY
+          )"
+          expected_manifest_sha="ed7ecdbd63fcd58488616260d0aa20d7448bb5a7dbf66b2d998f7cf3ac31e51f"
+          test "$actual_manifest_sha" = "$expected_manifest_sha"
+
+          if [ -f "$overlay_dir/PROJECT-OVERLAY.md" ]; then
+            cp "$overlay_dir/PROJECT-OVERLAY.md" .agents/skills/react-aria/PROJECT-OVERLAY.md
+          fi
+          if [ -f "$overlay_dir/UPSTREAM.md" ]; then
+            cp "$overlay_dir/UPSTREAM.md" .agents/skills/react-aria/UPSTREAM.md
+          fi
+
+          echo "Vendored $actual_count files; React Aria Skill content matches the uploaded archive fingerprints."
+
+      - name: Commit vendored Skill tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add .agents/skills/react-aria
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "chore(agent): vendor exact React Aria Skill tree"
+          git push origin HEAD:chore/sync-react-aria-skill-source
