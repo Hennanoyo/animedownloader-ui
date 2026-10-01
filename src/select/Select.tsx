@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { useRef } from "react";
 import { createPortal } from "react-dom";
 import {
   DismissButton,
@@ -60,9 +61,9 @@ export function Select({
     ),
   });
 
-  const triggerRef = React.useRef<HTMLButtonElement>(null);
-  const listBoxRef = React.useRef<HTMLUListElement>(null);
-  const overlayRef = React.useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const listBoxRef = useRef<HTMLUListElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   const {
     labelProps,
@@ -203,14 +204,17 @@ function SelectPopup({
   );
 }
 
+type SelectState = ReturnType<typeof useSelectState<SelectOption>>;
+type SelectNode = NonNullable<ReturnType<SelectState["collection"]["getItem"]>>;
+
 function SelectOptionRow({
   item,
   state,
 }: {
-  item: ReturnType<ReturnType<typeof useSelectState<SelectOption>>["collection"]["getItem"]>;
-  state: ReturnType<typeof useSelectState<SelectOption>>;
+  item: SelectNode;
+  state: SelectState;
 }) {
-  const ref = React.useRef<HTMLLIElement>(null);
+  const ref = useRef<HTMLLIElement>(null);
   const {
     optionProps,
     labelProps,
