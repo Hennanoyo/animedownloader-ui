@@ -2,9 +2,9 @@
 
 ## Package
 
-The consumer package is `@animedownloader/ui`.
+The repository exposes `@animedownloader/ui` as a source-controlled package. The package is consumed from the pinned `animedownloader-ui` Git submodule during development; npm publication is not part of the project integration contract.
 
-The current repository version is `0.1.0`. Phase 5 defines the public API for the first application-consumable release; publication itself remains Phase 6.
+The package manifest keeps a semantic version for ordinary package tooling, but the authoritative application revision is the Git submodule commit recorded by `animedownloader`.
 
 ## Public exports
 
@@ -26,7 +26,7 @@ Consumers must import from the package root and the documented stylesheet entry.
 
 Its domain-neutral item contract is:
 
-~~~ts
+```ts
 interface SelectOption {
   id: string | number;
   textValue: string;
@@ -34,7 +34,7 @@ interface SelectOption {
   description?: ReactNode;
   isDisabled?: boolean;
 }
-~~~
+```
 
 The component accepts React Aria low-level Select behavior/state props that are compatible with single selection. `selectionMode="multiple"` is not part of this public contract.
 
@@ -48,7 +48,7 @@ Use `disabledKeys` for consumer-level disabled state. Option-level `isDisabled` 
 
 Its domain-neutral item contract is:
 
-~~~ts
+```ts
 interface ComboBoxOption {
   id: string | number;
   textValue: string;
@@ -56,7 +56,7 @@ interface ComboBoxOption {
   description?: ReactNode;
   isDisabled?: boolean;
 }
-~~~
+```
 
 Use `defaultItems` when this primitive owns local filtering. Use `items` when the consumer owns filtering, including remote or asynchronous search.
 
@@ -86,12 +86,14 @@ Consumers that need the shared tokens can use the existing `@animedownloader/ui/
 
 ## Compatibility policy
 
-The package contract is the boundary between repositories.
+The Git submodule commit is the compatibility boundary during active development.
 
-Breaking changes to exported component props, option/value types, form semantics, or documented behavior require migration notes and a coordinated application change.
+Changes that affect exported component props, option/value types, form semantics, or documented behavior must update the package contract and be validated by the corresponding application consumer before the application moves its submodule pointer.
 
-Application code should not remove the legacy primitive until a published version satisfying this contract has been validated in `animedownloader`.
+The application must never switch the submodule to an arbitrary unvalidated UI commit as a workaround for a failing product check.
 
-## Publication
+## Distribution
 
-The publication target and release procedure are documented in `docs/release/npm.md`. The first intended application-consumable version is `0.1.0`, and the published stylesheet entry is part of that release contract.
+This repository is source-distributed through Git. CI and Dev Container workflows clone/init the repository's submodule and build it locally before application validation.
+
+There is no npm release, Trusted Publisher, npm token, or registry-version handoff required for application integration.

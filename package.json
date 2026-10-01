@@ -58,7 +58,5 @@
     "url": "https://github.com/Hennanoyo/animedownloader-ui.git"
   },
   "license": "Apache-2.0",
-  "publishConfig": {
-    "access": "public"
-  }
+  "private": true
 }
