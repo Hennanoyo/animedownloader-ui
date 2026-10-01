@@ -14,61 +14,143 @@ React Aria Components is a library of unstyled, accessible UI components that yo
 
 ## Documentation Structure
 
-The references/ directory contains detailed documentation organized as follows:
+The `references/` directory contains detailed documentation organized as follows:
 
 ### Guides
 
-- Collections: many components display a collection of items with keyboard navigation and selection.
-- Customization: React Aria provides a flexible compositional API and also supports the lower level Hook-based API for more control over rendering and behavior.
-- Drag and Drop: React Aria collection components support mouse, touch, keyboard, and screen reader accessible drag and drop.
-- Forms: integrate React Aria with HTML forms, validation, and form libraries.
-- Framework setup: integrate React Aria with a React framework.
-- Getting started: install React Aria and build a first component.
-- Quality: apply the accessibility, internationalization, and interaction principles.
-- Selection: handle selection events and selection state.
-- Styling: build custom designs because React Aria does not prescribe visual styles.
-- Testing: test React Aria components and applications.
-- Working with AI: use React Aria documentation and tooling with AI coding assistants.
+  * Collections: Many components display a collection of items, and provide functionality such as keyboard navigation, and selection. Learn how to load and render collections using React Aria's compositional API.
+  * Customization: React Aria is built using a flexible and composable API. Learn how to use contexts and slots to create custom component patterns, or mix and match with the lower level Hook-based API for even more control over rendering and behavior.
+  * Drag and Drop: React Aria collection components support drag and drop with mouse and touch interactions, and full keyboard and screen reader accessibility. Learn how to provide drag data and handle drop events to move, insert, or reorder items.
+  * Forms: Learn how to integrate with HTML forms, validate and submit data, and use React Aria with form libraries.
+  * Framework setup: Learn how to integrate React Aria with your framework.
+  * Getting started: How to install React Aria and build your first component.
+  * Quality: React Aria is built around three core principles: Accessibility, Internationalization, and Interactions. Learn how to apply these tools to build high quality UIs that work for everyone, everywhere, and on every device.
+  * Selection: Many collection components support selecting items by clicking or tapping them, or by using the keyboard. Learn how to handle selection events, how to control selection programmatically, and the data structures used to represent a selection.
+  * Styling: React Aria does not include any styles by default, allowing you to build custom designs to fit your application or design system using any styling solution.
+  * Working with AI: Learn how to use the React Aria MCP Server, Agent Skills, and more to help you build with AI.
 
 ### Components
 
-Read the matching official component page when you need its API, props, examples, or accessibility notes:
-- Select
-- ComboBox
-- ListBox
-- Popover
-- FocusScope
+  * Autocomplete: An autocomplete allows users to search or filter a list of suggestions.
+  * Breadcrumbs: Breadcrumbs display a hierarchy of links to the current page or resource in an application.
+  * Button: A button allows a user to perform an action, with mouse, touch, and keyboard interactions.
+  * Calendar: A calendar displays one or more date grids and allows a user to select a single date.
+  * Checkbox: A checkbox allows a user to select multiple items from a list of individual items, or
+  * CheckboxGroup: A CheckboxGroup allows users to select one or more items from a list of choices.
+  * ColorArea: A color area allows users to adjust two channels of an RGB, HSL or HSB color value against a two-dimensional gradient background.
+  * ColorField: A color field allows users to edit a hex color or individual color channel value.
+  * ColorPicker: A ColorPicker synchronizes a color value between multiple React Aria color components.
+  * ColorSlider: A ColorSlider allows users to adjust an individual channel of an RGB, HSL or HSB color value.
+  * ColorSwatch: A ColorSwatch displays a preview of a color.
+  * ColorSwatchPicker: A ColorSwatchPicker allows users to select from a set of color swatches.
+  * ColorWheel: A ColorWheel allows users to select a color using a circular control.
+  * ComboBox: A combo box combines a text input with a listbox, allowing users to filter a list of options to items matching a query.
+  * DateField: A date field allows users to enter and edit date and time values using a keyboard.
+  * DatePicker: A date picker combines a DateField and a Calendar popover to allow users to enter or select a date and time.
+  * DateRangePicker: DateRangePickers combine two DateFields and a RangeCalendar to allow users
+  * Disclosure: A disclosure is a collapsible section of content. It is composed of a a header with a heading and trigger button, and a panel that contains the content.
+  * DisclosureGroup: A DisclosureGroup allows users to expand and collapse related disclosures.
+  * DropZone: A drop zone is an area into which one or multiple objects can be dragged and dropped.
+  * FileTrigger: A FileTrigger allows users to access the file system with any pressable React Aria or React Spectrum component, or custom components built with usePress.
+  * Form: A form is a group of inputs that allows users to submit data to a server,
+  * GridList: A grid list displays a list of interactive items, with support for keyboard navigation,
+  * Group: A group represents a set of related UI controls, and supports interactive states for styling.
+  * Link: A link allows a user to navigate to another page or resource within a web page
+  * ListBox: A listbox displays a list of options and allows a user to select one or more of them.
+  * mcp
+  * Menu: A menu displays a list of actions or options that a user can choose.
+  * Meter: A meter represents a quantity within a known range, or a fractional value.
+  * Modal: A modal is an overlay element which blocks interaction with elements outside it.
+  * NumberField: A number field allows a user to enter a number, and increment or decrement the value using stepper buttons.
+  * Popover: A popover is an overlay element positioned relative to a trigger.
+  * ProgressBar: Progress bars show either determinate or indeterminate progress of an operation
+  * RadioGroup: A radio group allows users to select a single item from a list of mutually exclusive options.
+  * RangeCalendar: RangeCalendars display a grid of days in one or more months and allow users to select a contiguous range of dates.
+  * SearchField: A search field allows users to enter and clear a search query.
+  * Select: A select displays a collapsible list of options and allows a user to select one of them.
+  * Separator: A separator is a visual divider between two groups of content, e.g. groups of menu items or sections of a page.
+  * Slider: A slider allows a user to select one or more values within a range.
+  * Switch: A switch allows a user to turn a setting on or off.
+  * Table: A table displays rows and columns and enables a user to navigate its contents via directional navigation keys,
+  * Tabs: Tabs organize content into multiple sections and allow users to navigate between them.
+  * TagGroup: A tag group is a focusable list of labels, categories, keywords, filters, with support for keyboard navigation, selection, and removal.
+  * TextField: A text field allows a user to enter a plain text value with a keyboard.
+  * TimeField: TimeFields allow users to enter and edit time values using a keyboard.
+  * Toast
+  * ToggleButton: A toggle button allows a user to toggle a selection on or off, for example switching between two states or modes.
+  * ToggleButtonGroup: A ToggleButtonGroup allows users to toggle one or more options.
+  * Toolbar: A toolbar is a container for a set of interactive controls, such as dropdown menus, or checkboxes,
+  * Tooltip: A tooltip displays a description of an element on hover or focus.
+  * Tree: A tree provides a way to navigate nested, hierarchical information, with support for keyboard navigation
+  * Virtualizer: A Virtualizer renders a scrollable collection of data using customizable layouts.
 
-### Low-level Hook API
+### Interactions
 
-When repository rules require direct low-level control, read the matching hook documentation:
-- useSelect
-- useComboBox
-- useListBox
-- useOption
-- useOverlay
-- useFocusRing
-- mergeProps
+  * FocusRing: A utility component that applies a CSS class when an element has keyboard focus.
+  * FocusScope: A FocusScope manages focus for its descendants. It supports containing focus inside
+  * useClipboard: Handles clipboard interactions for a focusable element. Supports items of multiple types.
+  * useDrag: Handles drag interactions for an element, with support for traditional mouse and touch
+  * useDrop: Handles drop interactions for an element, with support for traditional mouse and touch
+  * useFocus: Handles focus events for the immediate target.
+  * useFocusRing: Determines whether a focus ring should be shown to indicate keyboard focus.
+  * useFocusVisible: Manages focus visible state for the page, and subscribes individual components for updates.
+  * useFocusWithin: Handles focus events for the target and its descendants.
+  * useHover: Handles pointer hover interactions for an element. Normalizes behavior
+  * useKeyboard: Handles keyboard interactions for a focusable element.
+  * useLandmark: Provides landmark navigation in an application. Call this with a role and label to register F6 landmark navigation.
+  * useLongPress: Handles long press interactions across mouse and touch devices. Supports a customizable time threshold,
+  * useMove: Handles move interactions across mouse, touch, and keyboard, including dragging with
+  * usePress: Handles press interactions across mouse, touch, keyboard, and screen readers.
 
-React Aria low-level hooks provide accessibility and interaction behavior while leaving DOM structure and styling to the component author.
+### Utilities
 
-### React Stately
+  * I18nProvider: Provides the locale for an application to all child components.
+  * mergeProps: Merges multiple props objects together. Event handlers are chained,
+  * PortalProvider: Sets the portal container for all overlay elements rendered by its children.
+  * SSRProvider: Provides support for server side rendering in older React versions.
+  * useCollator: Provides localized string collation for the current locale.
+  * useDateFormatter: Provides localized date formatting for the current locale.
+  * useField: Provides the accessibility implementation for input fields.
+  * useFilter: Provides localized string search functionality that is useful for filtering or matching items
+  * useId: Generates a stable id.
+  * useIsSSR: Returns whether the component is currently being server side rendered
+  * useLocale: Returns the current locale and layout direction.
+  * useNumberFormatter: Provides localized number formatting for the current locale.
+  * useObjectRef: Offers an object ref for a given callback ref or an object ref.
+  * VisuallyHidden: VisuallyHidden hides children visually while keeping content accessible.
 
-React Stately supplies state models that pair with React Aria behavior. For Select/ComboBox work, inspect the state API used by the primitive, especially selection, collections, focus strategy, input value, and overlay state.
+### Internationalization
 
-This repository keeps the React Aria behavior layer and React Stately state layer explicit rather than hiding them behind another abstraction without a documented reason.
+  * Calendar
+  * CalendarDate
+  * CalendarDateTime
+  * DateFormatter
+  * Internationalized Date
+  * Internationalized Number
+  * NumberFormatter
+  * NumberParser
+  * Time
+  * ZonedDateTime
 
-## Component Authoring Rule
+### Testing
 
-Use this Skill together with the repository AGENTS.md and component contracts.
+  * Testing CheckboxGroup
+  * Testing ComboBox
+  * Testing GridList
+  * Testing ListBox
+  * Testing Menu
+  * Testing RadioGroup
+  * Testing Select
+  * Testing Table
+  * Testing Tabs
+  * Testing Tree
 
-- React Aria + React Stately are the default low-level foundation here.
-- React Aria Components is optional and must not reduce required DOM, layout, styling, or state control.
-- Prefer direct Hook + State composition when tighter low-level control is required.
+## Project-specific low-level rule
 
-## Official references
+This repository uses React Aria + React Stately as its default low-level foundation. The official React Aria skill provides the discovery index above; when implementing a primitive that needs tighter DOM, layout, styling, focus, keyboard, collection, or state control, consult the matching low-level Hook documentation and the corresponding React Stately state API before coding.
+
+## Official sources
 
 - https://react-aria.adobe.com/ai
 - https://react-aria.adobe.com/llms.txt
-- https://react-aria.adobe.com/Select/useSelect.md
-- https://react-aria.adobe.com/ComboBox/useComboBox.md
+- https://www.skills.sh/adobe/com/react-aria
