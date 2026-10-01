@@ -4,7 +4,9 @@
   "description": "Low-level accessible UI primitives for animedownloader.",
   "type": "module",
   "packageManager": "pnpm@11.26.0",
-  "engines": { "node": ">=24.21.0" },
+  "engines": {
+    "node": ">=24.21.0"
+  },
   "scripts": {
     "build": "vite build",
     "lint": "eslint .",
@@ -13,11 +15,20 @@
     "e2e": "playwright test --pass-with-no-tests"
   },
   "exports": {
-    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
     "./styles/tokens.scss": "./src/styles/tokens.scss"
   },
-  "files": ["dist", "src/styles"],
-  "peerDependencies": { "react": "^19.1.0", "react-dom": "^19.1.0" },
+  "files": [
+    "dist",
+    "src/styles"
+  ],
+  "peerDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
   "dependencies": {
     "react-aria": "3.52.1",
     "react-stately": "3.50.0"
@@ -32,6 +43,8 @@
     "sass": "1.104.1",
     "typescript": "5.9.3",
     "vite": "7.3.6",
-    "vitest": "3.2.7"
+    "vitest": "3.2.7",
+    "@eslint/js": "9.39.5",
+    "@types/node": "24.13.6"
   }
 }
