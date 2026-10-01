@@ -6,8 +6,9 @@ Use this Skill when implementing or changing a reusable primitive in animedownlo
 
 1. Read AGENTS.md.
 2. Read .agents/skills/react-aria/SKILL.md.
-3. Open the exact official React Aria reference for the behavior being implemented.
-4. Read docs/architecture/design-system.md.
+3. Read .agents/skills/react-aria-project-overlay.md.
+4. Open the exact vendored React Aria reference under .agents/skills/react-aria/references/ for the behavior being implemented.
+5. Read docs/architecture/design-system.md.
 
 Do not implement React Aria behavior from memory when the official documentation is available.
 

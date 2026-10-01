@@ -9,7 +9,7 @@ The application repository owns domain composition and end-to-end product workfl
 
 ## Official React Aria Skill
 
-For reusable UI primitive work, read `.agents/skills/react-aria/SKILL.md` before implementing behavior from memory. Use its reference map to open the exact official React Aria documentation page for unfamiliar hooks, state, collections, overlays, or component patterns. The project-specific React Aria + React Stately rules below remain authoritative for how that knowledge is applied here.
+For reusable UI primitive work, read `.agents/skills/react-aria/SKILL.md` before implementing behavior from memory. Use its vendored references tree to open the exact React Aria documentation page for unfamiliar hooks, state, collections, overlays, or component patterns. Read .agents/skills/react-aria-project-overlay.md for project-specific React Aria + React Stately rules; those rules remain authoritative for how upstream knowledge is applied here.
 
 ## Session entrypoint
 For a fresh unscoped continuation request, read:

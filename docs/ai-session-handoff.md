@@ -21,8 +21,8 @@ Implement the domain-neutral Combobox primitive.
 
 Before coding:
 1. read `.agents/skills/react-aria/SKILL.md`;
-2. read `.agents/skills/react-aria/PROJECT-OVERLAY.md`;
-3. inspect the official `useComboBox`, `useComboBoxState`, `useListBox`, `useOption`, and overlay references;
+2. read `.agents/skills/react-aria-project-overlay.md`;
+3. inspect the vendored useComboBox, useComboBoxState, useListBox, useOption, and overlay references under `.agents/skills/react-aria/references/`;
 4. inspect the legacy product ComboBox in `animedownloader` only as migration input;
 5. define the public domain-neutral contract before copying behavior.
 

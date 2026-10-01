@@ -1,9 +1,8 @@
-# animedownloader-ui React Aria overlay
+# animedownloader-ui React Aria project overlay
 
-This file is project-specific and must not be merged into the upstream React Aria Skill snapshot.
+This file is project-specific guidance. It is intentionally stored outside the vendored upstream React Aria Skill tree so the upstream source remains byte-for-byte reproducible.
 
 ## Low-level foundation
-
 - React Aria provides accessibility and interaction behavior.
 - React Stately provides state, selection, and collection models.
 - Prefer direct Hook + State composition when the public contract requires control of DOM structure, layout, styling, focus, keyboard behavior, collection behavior, or state exposure.
@@ -11,15 +10,13 @@ This file is project-specific and must not be merged into the upstream React Ari
 - Do not hand-roll accessibility state machines already provided by React Aria or React Stately.
 
 ## Styling
-
 - Use SCSS Modules.
 - Use semantic design tokens.
 - Keep primitives domain-neutral.
 
 ## Implementation procedure
-
-1. Read `.agents/skills/react-aria/SKILL.md`.
-2. Open the exact official reference for the behavior being changed.
+1. Read .agents/skills/react-aria/SKILL.md.
+2. Open the exact vendored reference under .agents/skills/react-aria/references/ for the behavior being changed.
 3. Inspect the corresponding React Stately state API.
 4. Define or update the public component contract.
 5. Implement the smallest direct Hook + State composition that satisfies that contract.
@@ -27,5 +24,4 @@ This file is project-specific and must not be merged into the upstream React Ari
 7. Verify typecheck, tests, build, and Browser behavior before declaring the increment complete.
 
 ## Current component work
-
 Select and Combobox are the first primitives being rebuilt from the application's legacy implementations. Their repository Issue is the source of truth for the current phase and acceptance criteria.
