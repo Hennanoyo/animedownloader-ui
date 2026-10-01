@@ -116,6 +116,7 @@ export function Select({
       <button
         {...mergeProps(buttonProps, focusProps)}
         ref={triggerRef}
+        type="button"
         className={styles.trigger}
         data-size={size}
         data-focus-visible={isFocusVisible || undefined}
