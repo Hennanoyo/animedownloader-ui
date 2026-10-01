@@ -107,7 +107,7 @@ describe("ComboBox", () => {
       />,
     );
     const input = screen.getByRole("combobox", { name: "Anime" });
-    await user.click(input);
+    await user.click(screen.getByRole("button", { name: /Show suggestions/ }));
     const disabled = screen.getByRole("option", { name: "Banana" });
     expect(disabled).toHaveAttribute("aria-disabled", "true");
     await user.click(disabled);
