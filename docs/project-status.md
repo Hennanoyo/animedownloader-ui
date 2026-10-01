@@ -30,7 +30,7 @@ The package version is 0.1.0 and the intended public entry points are @animedown
 
 PR #15 configured npm package metadata and a tag-driven GitHub Actions Trusted Publishing workflow. The repository-side release workflow passed Check and Browser before merge and the main push CI also passed both checks.
 
-The remaining release steps are external to the repository: configure the npm Trusted Publisher for publish.yml, then create tag v0.1.0. The workflow verifies that the tag exactly matches package.json.version before publication.
+The remaining release steps are external to the repository: first bootstrap-publish @animedownloader/ui@0.1.0 manually, because npm requires the package to exist before a Trusted Publisher can be configured; then configure the npm Trusted Publisher for publish.yml and create tag v0.1.0. The tag workflow is idempotent for an already-published version and verifies that the tag exactly matches package.json.version.
 
 ## Next implementation-ready increment
 Complete the external npm Trusted Publisher setup and publish @animedownloader/ui 0.1.0. After npm makes that exact version available, continue Hennanoyo/animedownloader#383 with representative Select adoption.
