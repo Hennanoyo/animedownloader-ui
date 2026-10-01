@@ -12,14 +12,15 @@ const options: SelectOption[] = [
 describe("Select", () => {
   test("renders the accessible field and selected value", () => {
     render(<Select label="Example" items={options} defaultValue="one" />);
-    expect(screen.getByRole("button", { name: "Example" })).toHaveTextContent("One");
+    const trigger = screen.getByRole("button", { name: /Example/ });
+    expect(trigger).toHaveTextContent("One");
   });
 
   test("opens and selects with keyboard interaction", async () => {
     const user = userEvent.setup();
     render(<Select label="Example" items={options} defaultValue="one" />);
 
-    const trigger = screen.getByRole("button", { name: "Example" });
+    const trigger = screen.getByRole("button", { name: /Example/ });
     await user.click(trigger);
     expect(screen.getByRole("listbox")).toBeVisible();
 
@@ -33,11 +34,12 @@ describe("Select", () => {
     const user = userEvent.setup();
     render(<Select label="Example" items={options} defaultValue="one" />);
 
-    await user.click(screen.getByRole("button", { name: "Example" }));
+    const trigger = screen.getByRole("button", { name: /Example/ });
+    await user.click(trigger);
     const disabled = screen.getByRole("option", { name: "Three" });
     expect(disabled).toHaveAttribute("aria-disabled", "true");
 
     await user.click(disabled);
-    expect(screen.getByRole("button", { name: "Example" })).toHaveTextContent("One");
+    expect(trigger).toHaveTextContent("One");
   });
 });
