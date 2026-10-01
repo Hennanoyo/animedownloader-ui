@@ -6,7 +6,7 @@ test.describe("Select", () => {
   });
 
   test("opens, exposes listbox semantics, and selects an option", async ({ page }) => {
-    const trigger = page.getByRole("button", { name: "Resolution" });
+    const trigger = page.getByRole("button", { name: /Resolution/ });
     await trigger.click();
 
     const listbox = page.getByRole("listbox");
@@ -22,7 +22,7 @@ test.describe("Select", () => {
   });
 
   test("supports keyboard selection and restores focus to the trigger", async ({ page }) => {
-    const trigger = page.getByRole("button", { name: "Resolution" });
+    const trigger = page.getByRole("button", { name: /Resolution/ });
     await trigger.focus();
     await page.keyboard.press("Enter");
 
@@ -35,7 +35,7 @@ test.describe("Select", () => {
   });
 
   test("exposes disabled option semantics", async ({ page }) => {
-    const trigger = page.getByRole("button", { name: "Resolution" });
+    const trigger = page.getByRole("button", { name: /Resolution/ });
     await trigger.click();
 
     const disabledOption = page.getByRole("option", { name: "480p" });
