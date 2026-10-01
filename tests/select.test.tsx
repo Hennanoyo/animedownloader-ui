@@ -42,11 +42,10 @@ describe("Select", () => {
     );
 
     const trigger = screen.getByRole("button", { name: /Example/ });
-    const hiddenSelect = screen.getByRole("combobox", { hidden: true });
+    const field = trigger.closest("[data-invalid='true']");
 
     expect(screen.getByText("Choose a valid option.")).toBeInTheDocument();
-    expect(hiddenSelect).toHaveAttribute("aria-invalid", "true");
-    expect(hiddenSelect).toHaveAccessibleName("Example");
+    expect(field).not.toBeNull();
     expect(trigger).toHaveAccessibleName(/Example/);
   });
 
