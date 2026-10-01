@@ -193,7 +193,7 @@ function SelectPopup({
   const { listBoxProps } = useListBox(
     {
       ...menuProps,
-      autoFocus: state.focusStrategy ?? false,
+      autoFocus: state.focusStrategy ?? "first",
     },
     state as unknown as ListState<SelectOption>,
     listBoxRef,
