@@ -5,6 +5,13 @@ test.describe("Select", () => {
     await page.goto("/tests/browser/select.html");
   });
 
+  test("does not submit a form when opening the Select", async ({ page }) => {
+    const trigger = page.getByRole("button", { name: /Resolution/ });
+    await trigger.click();
+    await expect(page.getByRole("listbox")).toBeVisible();
+    await expect(trigger).toHaveAttribute("aria-expanded", "true");
+  });
+
   test("opens, exposes listbox semantics, and selects an option", async ({ page }) => {
     const priorField = page.getByRole("textbox", { name: "Previously focused field" });
     await priorField.focus();
