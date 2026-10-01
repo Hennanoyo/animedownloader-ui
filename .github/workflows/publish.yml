@@ -44,6 +44,12 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Verify build artifacts
+        run: |
+          test -f dist/index.js
+          test -f dist/index.d.ts
+          test -f dist/styles.css
+
       - name: Verify version tag
         env:
           TAG: ${{ github.ref_name }}

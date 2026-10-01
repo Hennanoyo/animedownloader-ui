@@ -14,9 +14,10 @@ The workflow:
 1. installs the pinned pnpm/Node versions;
 2. installs from the lockfile;
 3. runs lint, typecheck, unit tests, and build;
-4. verifies that the git tag exactly matches `package.json.version`;
-5. runs `npm pack --dry-run`;
-6. publishes to npm.
+4. verifies that the release build contains `dist/index.js`, `dist/index.d.ts`, and `dist/styles.css`;
+5. verifies that the git tag exactly matches `package.json.version`;
+6. runs `npm pack --dry-run`;
+7. publishes to npm.
 
 The publication job intentionally uses `ubuntu-latest`. This is separate from the repository Browser runner because npm Trusted Publishing currently supports GitHub-hosted runners, not self-hosted runners.
 
