@@ -1,27 +1,52 @@
 # UI Authoring Skill
 
-Use this Skill when implementing or changing a reusable primitive here.
+Use this Skill when implementing or changing a reusable primitive in animedownloader-ui.
 
-Before coding:
-- read `docs/architecture/design-system.md`;
-- define public semantics, state model, and API;
-- decide whether direct React Aria + React Stately composition is required;
-- use RAC only when its anatomy fits the contract without reducing control.
+## Required references
 
-Implementation:
-- keep the primitive domain-neutral;
-- use React Aria for accessibility/interaction/focus/keyboard behavior;
-- use React Stately for state/selection/collection models;
-- use SCSS Modules and semantic tokens;
-- avoid exposing internal state objects or implementation-only DOM conventions.
+1. Read AGENTS.md.
+2. Read .agents/skills/react-aria/SKILL.md.
+3. Open the exact official React Aria reference for the behavior being implemented.
+4. Read docs/architecture/design-system.md.
 
-Testing:
-- accessible labeling/semantics;
+Do not implement React Aria behavior from memory when the official documentation is available.
+
+## Low-level foundation
+
+- React Aria provides accessibility and interaction behavior.
+- React Stately provides state, selection, and collection models.
+- Prefer direct Hook + State composition when the public contract requires control of DOM structure, layout, styling, focus, keyboard behavior, collection behavior, or state exposure.
+- React Aria Components is optional. Use it only when its higher-level anatomy preserves the required control.
+
+## Implementation
+
+- Keep the primitive domain-neutral.
+- Keep styling in SCSS Modules and semantic design tokens.
+- Use explicit collection keys and text values where required by the React Aria contract.
+- Do not hand-roll accessibility state machines already provided by React Aria/Stately.
+- Do not expose internal state objects or undocumented DOM selectors as public API.
+
+## Testing
+
+For interactive primitives, cover:
+
+- accessible labeling and semantics;
 - keyboard interaction;
-- focus behavior;
+- focus behavior and restoration;
 - selection/state transitions;
-- disabled/validation where supported;
-- popup/overlay lifecycle where supported;
-- browser-rendered behavior.
+- disabled/validation states;
+- popup/overlay lifecycle;
+- Browser-rendered behavior.
 
-A primitive is ready for application consumption only after API/contract docs, focused tests, Browser tests, build/typecheck, and package release path are ready.
+Use the official React Aria testing guidance and prefer public accessibility contracts over brittle internal selectors.
+
+## Completion
+
+A reusable primitive is ready for application consumption only after:
+
+- public API and component contract are documented;
+- focused tests pass;
+- Browser tests pass;
+- build/typecheck pass;
+- package release path is documented;
+- the current GitHub Issue records the completed increment and the next implementation boundary.
