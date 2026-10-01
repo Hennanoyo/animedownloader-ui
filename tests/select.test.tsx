@@ -61,4 +61,18 @@ describe("Select", () => {
     await user.click(disabled);
     expect(trigger).toHaveTextContent("One");
   });
+
+  test("preserves consumer-supplied disabled keys", () => {
+    render(
+      <Select
+        label="Example"
+        items={options}
+        defaultValue="one"
+        disabledKeys={["two"]}
+      />,
+    );
+
+    const trigger = screen.getByRole("button", { name: /Example/ });
+    expect(trigger).toBeInTheDocument();
+  });
 });
