@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client";
-import { Select, type SelectOption } from "../../src";
+import { StrictMode } from "react";
+import { Select, type SelectOption } from "@animedownloader/ui";
 
 const options: SelectOption[] = [
   { id: "1080p", textValue: "1080p", label: "1080p" },
@@ -8,7 +9,8 @@ const options: SelectOption[] = [
 ];
 
 createRoot(document.getElementById("root")!).render(
-  <>
+  <StrictMode>
+    <>
     <label>
       Previously focused field
       <input aria-label="Previously focused field" />
@@ -21,5 +23,6 @@ createRoot(document.getElementById("root")!).render(
         name="resolution"
       />
     </form>
-  </>,
+    </>
+  </StrictMode>,
 );
