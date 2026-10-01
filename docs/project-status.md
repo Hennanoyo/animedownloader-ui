@@ -35,13 +35,9 @@ The application CI checkout uses `submodules: recursive`, and the frontend/brows
 
 ## Next implementation-ready increment
 
-Complete the Git source-consumption migration in `animedownloader#383`:
-1. make the pinned submodule + `link:` flow self-initializing in the VSCode Dev Container;
-2. verify Frontend, Browser, and Integration CI consume the pinned UI source without registry access;
-3. migrate remaining Select/ComboBox consumers;
-4. remove the legacy application implementation and temporary alias after all application workflows pass.
+Continue `animedownloader#383` Phase 2: verify the representative Select contract and migrate additional Select/ComboBox consumers using the pinned Git source boundary.
 
-Do not reintroduce npm publication or replace the pinned submodule with an unbounded Git branch dependency.
+The repository-side Git source integration is complete. Do not reintroduce npm publication or replace the pinned submodule with an unbounded Git branch dependency.
 
 ## Validation
 Required CI checks must reach terminal success before merge. Browser checks use CI_BROWSER_RUNNER when configured and otherwise fall back to ubuntu-latest.
