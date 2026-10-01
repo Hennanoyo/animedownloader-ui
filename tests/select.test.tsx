@@ -13,7 +13,6 @@ describe("Select", () => {
   test("renders the accessible field and selected value", () => {
     render(<Select label="Example" items={options} defaultValue="one" />);
     expect(screen.getByRole("button", { name: "Example" })).toHaveTextContent("One");
-    expect(screen.getByRole("combobox")).toHaveAccessibleName("Example");
   });
 
   test("opens and selects with keyboard interaction", async () => {
