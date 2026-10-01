@@ -61,9 +61,9 @@ jobs:
           for path in sorted(p for p in root.rglob("*") if p.is_file()):
               rel = path.relative_to(root).as_posix()
               h.update(rel.encode())
-              h.update(b"\\0")
+              h.update(bytes([0]))
               h.update(path.read_bytes())
-              h.update(b"\\0")
+              h.update(bytes([0]))
           print(h.hexdigest())
           PY
           )"
