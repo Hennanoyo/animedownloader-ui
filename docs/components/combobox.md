@@ -42,6 +42,8 @@ Use `items` when the consumer owns filtering. This follows React Stately's contr
 
 When `items` is provided, the collection is treated as controlled and no internal filtering is applied.
 
+The default `menuTrigger` is `input`: editing the input opens the popup. The trigger button can also open it without changing the query.
+
 ## Accessibility and interaction contract
 
 - React Aria `useComboBox` owns input, popup trigger, labeling, keyboard, focus, and ARIA wiring.
