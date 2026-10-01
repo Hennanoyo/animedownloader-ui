@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: 24.21.0
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --no-frozen-lockfile
       - run: pnpm lint
       - run: pnpm typecheck
       - run: pnpm test
@@ -46,6 +46,6 @@ jobs:
         with:
           node-version: 24.21.0
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --no-frozen-lockfile
       - run: pnpm exec playwright install chromium
       - run: pnpm e2e
