@@ -17,7 +17,8 @@ Phase 5 — AI usage Skills and migration contract
 - Final Select CI passed Check and Browser.
 - Domain-neutral ComboBox integrated through PR #9.
 - ComboBox final Check and Browser CI passed after fixing a state-only filter API typing issue, aligning tests with the default menuTrigger="input" semantics, and wiring option isDisabled into React Stately disabledKeys.
-- The current review found and corrected Select consumer disabledKeys preservation and ComboBox form-value/blur contracts.
+- PR #11 added the authoritative Skill discovery/selection/preflight workflow and reconciled the Select/ComboBox low-level contracts: consumer disabledKeys preservation, controlled collection filtering, ComboBox formValue key/text submission, and shouldCloseOnBlur behavior.
+- PR #11 final Check and Browser CI passed; main push CI for the merge commit also passed both checks.
 
 ## Next implementation boundary
 Finalize the stable Select/ComboBox public API and migration guidance for animedownloader.
@@ -38,7 +39,8 @@ Do not read every Skill by default; only Skills selected by the current plan are
 - Primitives are domain-neutral.
 - Primitive behavior/accessibility/interaction tests are owned here; application workflows remain in animedownloader.
 - The old animedownloader/web/libs/ui code is migration input, not a second long-term source of truth.
-- Browser CI uses vars.CI_BROWSER_RUNNER when configured so the same self-hosted runner label can be shared with animedownloader.
+- Browser CI uses CI_BROWSER_RUNNER when configured so the same self-hosted runner label can be shared with animedownloader.
+- Skill discovery, Issue recording, and preflight are mandatory for each non-trivial implementation increment as defined in docs/development/skill-reference-workflow.md.
 
 ## Resume rule
 Continue from Issue #1's current Phase after inspecting GitHub live state and satisfying the current increment's Skill Reference Plan/preflight.
