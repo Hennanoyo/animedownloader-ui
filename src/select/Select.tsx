@@ -1,5 +1,5 @@
 import type { ReactNode, RefObject } from "react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import {
   DismissButton,
@@ -64,6 +64,7 @@ export function Select({
   });
 
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const wasOpenRef = useRef(false);
   const listBoxRef = useRef<HTMLUListElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
@@ -89,6 +90,13 @@ export function Select({
   const { buttonProps } = useButton(triggerProps, triggerRef);
   const { focusProps, isFocusVisible } = useFocusRing();
   const isFieldInvalid = isInvalid ?? errorMessage != null;
+
+  useEffect(() => {
+    if (wasOpenRef.current && !state.isOpen) {
+      triggerRef.current?.focus();
+    }
+    wasOpenRef.current = state.isOpen;
+  }, [state.isOpen]);
 
   return (
     <div
