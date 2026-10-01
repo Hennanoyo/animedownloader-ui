@@ -68,6 +68,16 @@ export function ComboBox({
   const defaultItemList =
     defaultItems == null ? undefined : Array.from(defaultItems);
   const itemList = items == null ? undefined : Array.from(items);
+  const disabledOptionKeys = [
+    ...(defaultItemList ?? []),
+    ...(itemList ?? []),
+  ]
+    .filter((item) => item.isDisabled)
+    .map((item) => item.id);
+  const disabledKeys = new Set([
+    ...(props.disabledKeys ?? []),
+    ...disabledOptionKeys,
+  ]);
   const isFieldInvalid = isInvalid ?? errorMessage != null;
 
   const state = useComboBoxState<ComboBoxOption>({
@@ -78,6 +88,7 @@ export function ComboBox({
     items: itemList,
     defaultItems: defaultItemList,
     isInvalid: isFieldInvalid,
+    disabledKeys,
     defaultFilter: defaultFilter ?? contains,
     allowsEmptyCollection,
     shouldCloseOnBlur,
@@ -110,6 +121,7 @@ export function ComboBox({
       items: itemList,
       defaultItems: defaultItemList,
       isInvalid: isFieldInvalid,
+      disabledKeys,
       inputRef,
       buttonRef,
       listBoxRef,
