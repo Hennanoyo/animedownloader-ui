@@ -11,7 +11,7 @@ Phase 4 — Combobox
 
 ## Completed since the previous snapshot
 - Repository AI/tooling foundation integrated through PR #2.
-- Official React Aria Agent Skill and provenance guidance integrated through PR #4 and refined through PR #5.
+- Official React Aria Agent Skill was initially integrated through PRs #4/#5, then replaced with the complete 168-file supplied upstream tree in PR #8.
 - Select integrated through PR #3.
 - Select validation-specific test coverage integrated through PR #6.
 - Final Select CI passed Check and Browser.
