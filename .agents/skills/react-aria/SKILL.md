@@ -17,20 +17,18 @@ React Aria Components is a library of unstyled, accessible UI components that yo
 The `references/` directory contains detailed documentation organized as follows:
 
 ### Guides
-
   * Collections: Many components display a collection of items, and provide functionality such as keyboard navigation, and selection. Learn how to load and render collections using React Aria's compositional API.
   * Customization: React Aria is built using a flexible and composable API. Learn how to use contexts and slots to create custom component patterns, or mix and match with the lower level Hook-based API for even more control over rendering and behavior.
   * Drag and Drop: React Aria collection components support drag and drop with mouse and touch interactions, and full keyboard and screen reader accessibility. Learn how to provide drag data and handle drop events to move, insert, or reorder items.
   * Forms: Learn how to integrate with HTML forms, validate and submit data, and use React Aria with form libraries.
   * Framework setup: Learn how to integrate React Aria with your framework.
   * Getting started: How to install React Aria and build your first component.
-  * Quality: React Aria is built around three core principles: Accessibility, Internationalization, and Interactions. Learn how to apply these tools to build high quality UIs that work for everyone, everywhere, and on every device.
+  * Quality: React Aria is built around three core principles: , , and . Learn how to apply these tools to build high quality UIs that work for everyone, everywhere, and on every device.
   * Selection: Many collection components support selecting items by clicking or tapping them, or by using the keyboard. Learn how to handle selection events, how to control selection programmatically, and the data structures used to represent a selection.
   * Styling: React Aria does not include any styles by default, allowing you to build custom designs to fit your application or design system using any styling solution.
   * Working with AI: Learn how to use the React Aria MCP Server, Agent Skills, and more to help you build with AI.
 
 ### Components
-
   * Autocomplete: An autocomplete allows users to search or filter a list of suggestions.
   * Breadcrumbs: Breadcrumbs display a hierarchy of links to the current page or resource in an application.
   * Button: A button allows a user to perform an action, with mouse, touch, and keyboard interactions.
@@ -55,13 +53,13 @@ The `references/` directory contains detailed documentation organized as follows
   * Form: A form is a group of inputs that allows users to submit data to a server,
   * GridList: A grid list displays a list of interactive items, with support for keyboard navigation,
   * Group: A group represents a set of related UI controls, and supports interactive states for styling.
-  * Link: A link allows a user to navigate to another page or resource within a web page
+  * Link: A link allows users to navigate to another page or resource within a web page
   * ListBox: A listbox displays a list of options and allows a user to select one or more of them.
   * mcp
   * Menu: A menu displays a list of actions or options that a user can choose.
   * Meter: A meter represents a quantity within a known range, or a fractional value.
   * Modal: A modal is an overlay element which blocks interaction with elements outside it.
-  * NumberField: A number field allows a user to enter a number, and increment or decrement the value using stepper buttons.
+  * NumberField: A number field allows a user to enter and edit a number, and increment or decrement the value using stepper buttons.
   * Popover: A popover is an overlay element positioned relative to a trigger.
   * ProgressBar: Progress bars show either determinate or indeterminate progress of an operation
   * RadioGroup: A radio group allows users to select a single item from a list of mutually exclusive options.
@@ -72,12 +70,12 @@ The `references/` directory contains detailed documentation organized as follows
   * Slider: A slider allows a user to select one or more values within a range.
   * Switch: A switch allows a user to turn a setting on or off.
   * Table: A table displays rows and columns and enables a user to navigate its contents via directional navigation keys,
-  * Tabs: Tabs organize content into multiple sections and allow users to navigate between them.
+  * Tabs: Tabs organize content into multiple sections,
   * TagGroup: A tag group is a focusable list of labels, categories, keywords, filters, with support for keyboard navigation, selection, and removal.
   * TextField: A text field allows a user to enter a plain text value with a keyboard.
   * TimeField: TimeFields allow users to enter and edit time values using a keyboard.
   * Toast
-  * ToggleButton: A toggle button allows a user to toggle a selection on or off, for example switching between two states or modes.
+  * ToggleButton: A toggle button allows users to toggle a selection on or off, for example switching between two states or modes.
   * ToggleButtonGroup: A ToggleButtonGroup allows users to toggle one or more options.
   * Toolbar: A toolbar is a container for a set of interactive controls, such as dropdown menus, or checkboxes,
   * Tooltip: A tooltip displays a description of an element on hover or focus.
@@ -85,7 +83,6 @@ The `references/` directory contains detailed documentation organized as follows
   * Virtualizer: A Virtualizer renders a scrollable collection of data using customizable layouts.
 
 ### Interactions
-
   * FocusRing: A utility component that applies a CSS class when an element has keyboard focus.
   * FocusScope: A FocusScope manages focus for its descendants. It supports containing focus inside
   * useClipboard: Handles clipboard interactions for a focusable element. Supports items of multiple types.
@@ -103,24 +100,22 @@ The `references/` directory contains detailed documentation organized as follows
   * usePress: Handles press interactions across mouse, touch, keyboard, and screen readers.
 
 ### Utilities
-
   * I18nProvider: Provides the locale for an application to all child components.
   * mergeProps: Merges multiple props objects together. Event handlers are chained,
   * PortalProvider: Sets the portal container for all overlay elements rendered by its children.
-  * SSRProvider: Provides support for server side rendering in older React versions.
-  * useCollator: Provides localized string collation for the current locale.
+  * SSRProvider: When using SSR with React 16 or 17, applications must be wrapped in an SSRProvider.
+  * useCollator: Provides localized string collation for the current locale. Automatically updates when the locale changes,
   * useDateFormatter: Provides localized date formatting for the current locale.
   * useField: Provides the accessibility implementation for input fields.
   * useFilter: Provides localized string search functionality that is useful for filtering or matching items
-  * useId: Generates a stable id.
+  * useId: Generates an id.
   * useIsSSR: Returns whether the component is currently being server side rendered
   * useLocale: Returns the current locale and layout direction.
   * useNumberFormatter: Provides localized number formatting for the current locale.
   * useObjectRef: Offers an object ref for a given callback ref or an object ref.
-  * VisuallyHidden: VisuallyHidden hides children visually while keeping content accessible.
+  * VisuallyHidden: VisuallyHidden hides children visually while keeping content accessible
 
 ### Internationalization
-
   * Calendar
   * CalendarDate
   * CalendarDateTime
@@ -133,7 +128,6 @@ The `references/` directory contains detailed documentation organized as follows
   * ZonedDateTime
 
 ### Testing
-
   * Testing CheckboxGroup
   * Testing ComboBox
   * Testing GridList
@@ -144,13 +138,3 @@ The `references/` directory contains detailed documentation organized as follows
   * Testing Table
   * Testing Tabs
   * Testing Tree
-
-## Project-specific low-level rule
-
-This repository uses React Aria + React Stately as its default low-level foundation. The official React Aria skill provides the discovery index above; when implementing a primitive that needs tighter DOM, layout, styling, focus, keyboard, collection, or state control, consult the matching low-level Hook documentation and the corresponding React Stately state API before coding.
-
-## Official sources
-
-- https://react-aria.adobe.com/ai
-- https://react-aria.adobe.com/llms.txt
-- https://www.skills.sh/adobe/com/react-aria
