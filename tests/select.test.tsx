@@ -30,6 +30,23 @@ describe("Select", () => {
     expect(trigger).toHaveFocus();
   });
 
+  test("wires validation state and error message to the field", () => {
+    render(
+      <Select
+        label="Example"
+        items={options}
+        defaultValue="one"
+        isInvalid
+        errorMessage="Choose a valid option."
+      />,
+    );
+
+    const trigger = screen.getByRole("button", { name: /Example/ });
+    expect(screen.getByText("Choose a valid option.")).toBeInTheDocument();
+    expect(trigger).toHaveAttribute("aria-invalid", "true");
+    expect(trigger).toHaveAttribute("aria-describedby");
+  });
+
   test("does not select disabled options", async () => {
     const user = userEvent.setup();
     render(<Select label="Example" items={options} defaultValue="one" />);
