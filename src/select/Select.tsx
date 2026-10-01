@@ -230,6 +230,7 @@ function SelectOptionRow({
     ref,
   );
   const option = item.value;
+  if (!option) return null;
 
   return (
     <li
