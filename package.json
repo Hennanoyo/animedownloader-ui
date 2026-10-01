@@ -1,0 +1,51 @@
+{
+  "name": "@animedownloader/ui",
+  "version": "0.1.0",
+  "description": "Low-level accessible UI primitives for animedownloader.",
+  "type": "module",
+  "packageManager": "pnpm@11.26.0",
+  "engines": {
+    "node": ">=24.21.0"
+  },
+  "scripts": {
+    "build": "vite build",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "e2e": "playwright test --pass-with-no-tests"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles/tokens.scss": "./src/styles/tokens.scss"
+  },
+  "files": [
+    "dist",
+    "src/styles"
+  ],
+  "peerDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "dependencies": {
+    "react-aria": "3.52.1",
+    "react-stately": "3.50.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/react": "19.1.13",
+    "@types/react-dom": "19.1.9",
+    "@typescript-eslint/eslint-plugin": "8.70.1",
+    "@typescript-eslint/parser": "8.70.1",
+    "eslint": "9.39.5",
+    "sass": "1.104.1",
+    "typescript": "5.9.3",
+    "vite": "7.3.6",
+    "vitest": "3.2.7",
+    "@eslint/js": "9.39.5",
+    "@types/node": "24.13.6",
+    "typescript-eslint": "8.70.1"
+  }
+}

@@ -1,0 +1,64 @@
+:root {
+  --ui-canvas: #0b1020;
+  --ui-surface: #0f172a;
+  --ui-surface-subtle: #0b1222;
+  --ui-surface-elevated: #111827;
+  --ui-surface-selected: #16234a;
+  --ui-border: #26324a;
+  --ui-border-strong: #334155;
+  --ui-text-primary: #f8fafc;
+  --ui-text-body: #e5e7eb;
+  --ui-text-secondary: #cbd5e1;
+  --ui-text-muted: #94a3b8;
+  --ui-accent: #60a5fa;
+  --ui-accent-link: #93c5fd;
+  --ui-accent-strong: #2563eb;
+  --ui-accent-surface: #172554;
+  --ui-on-accent: #ffffff;
+  --ui-danger: #fecaca;
+  --ui-danger-strong: #f87171;
+  --ui-danger-border: #7f1d1d;
+  --ui-danger-surface: #2a1014;
+  --ui-warning: #fde68a;
+  --ui-warning-border: #854d0e;
+  --ui-warning-surface: #1c1710;
+  --ui-success: #bbf7d0;
+  --ui-success-strong: #4ade80;
+  --ui-success-border: #166534;
+  --ui-success-surface: #0c2115;
+
+  --ui-space-1: 4px;
+  --ui-space-2: 8px;
+  --ui-space-3: 12px;
+  --ui-space-4: 16px;
+  --ui-space-5: 20px;
+  --ui-space-6: 24px;
+  --ui-space-8: 32px;
+  --ui-space-10: 40px;
+  --ui-space-12: 48px;
+  --ui-space-16: 64px;
+
+  --ui-radius-sm: 6px;
+  --ui-radius-md: 8px;
+  --ui-radius-lg: 12px;
+  --ui-radius-pill: 999px;
+
+  --ui-control-compact: 32px;
+  --ui-control-default: 40px;
+  --ui-control-prominent: 44px;
+
+  --ui-icon-sm: 16px;
+  --ui-icon-md: 20px;
+  --ui-icon-lg: 24px;
+
+  --ui-type-section-title: 18px;
+  --ui-type-card-title: 16px;
+  --ui-type-body: 14px;
+  --ui-type-meta: 12px;
+  --ui-type-label: 14px;
+  --ui-type-compact: 11px;
+  --ui-type-eyebrow: 12px;
+  --ui-type-control-compact: 0.82rem;
+  --ui-type-control-default: 0.9rem;
+  --ui-type-control-prominent: 0.95rem;
+}
