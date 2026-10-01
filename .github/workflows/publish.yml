@@ -54,5 +54,19 @@ jobs:
       - name: Verify package contents
         run: npm pack --dry-run
 
+      - name: Check whether version is already published
+        id: published
+        env:
+          VERSION: ${{ github.ref_name }}
+        run: |
+          PACKAGE_VERSION="$(node -p "require('./package.json').version")"
+          VERSION="${VERSION#v}"
+          if npm view "@animedownloader/ui@${PACKAGE_VERSION}" version >/dev/null 2>&1; then
+            echo "already_published=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "already_published=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Publish
+        if: steps.published.outputs.already_published != 'true'
         run: npm publish --access public

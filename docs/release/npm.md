@@ -22,7 +22,7 @@ The publication job intentionally uses `ubuntu-latest`. This is separate from th
 
 ## npm Trusted Publishing setup
 
-Before the first publish, configure a GitHub Actions trusted publisher for `@animedownloader/ui` in the npm package settings.
+The npm package must already exist on the npm registry before a Trusted Publisher relationship can be configured. The first `@animedownloader/ui@0.1.0` publication is therefore a one-time manual bootstrap. After that package version exists, configure the GitHub Actions Trusted Publisher for `@animedownloader/ui` in the npm package settings.
 
 Use these values:
 
@@ -38,15 +38,27 @@ The workflow already grants `id-token: write`, and the package metadata contains
 
 No long-lived npm publish token is stored in the repository.
 
-## Release procedure
+## Bootstrap procedure for 0.1.0
+
+Because npm Trusted Publishing requires the package to already exist, bootstrap the first release once from a maintainer-controlled environment:
+
+1. build and validate the package on the validated `main` commit;
+2. run `npm publish --access public` with the maintainer's npm credentials;
+3. verify `@animedownloader/ui@0.1.0` exists on npm;
+4. configure the Trusted Publisher described above;
+5. create the matching `v0.1.0` tag.
+
+The publish workflow treats an already-published version as a successful no-op, so the `v0.1.0` tag can still be the durable release record without attempting a duplicate publish.
+
+## Release procedure for later versions
 
 For a new version:
 
 1. update `package.json.version`;
 2. update migration/release notes when the public contract changes;
 3. merge and verify the version change on `main`;
-4. create the matching git tag, for example `v0.1.0`;
-5. let the publish workflow validate and publish the tag.
+4. create the matching git tag, for example `v0.1.1`;
+5. let the publish workflow validate and publish the tag through npm Trusted Publishing.
 
 The tag must exactly match the package version. A mismatched tag fails before publication.
 
