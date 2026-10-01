@@ -92,8 +92,6 @@ export function ComboBox({
     label,
     description,
     errorMessage,
-    name: inputName,
-    form,
     items: itemList,
     defaultItems: defaultItemList,
     isInvalid: isFieldInvalid,
