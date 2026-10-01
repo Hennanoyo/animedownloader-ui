@@ -8,5 +8,16 @@ const options: SelectOption[] = [
 ];
 
 createRoot(document.getElementById("root")!).render(
-  <Select label="Resolution" items={options} defaultValue="1080p" name="resolution" />,
+  <>
+    <label>
+      Previously focused field
+      <input aria-label="Previously focused field" />
+    </label>
+    <Select
+      label="Resolution"
+      items={options}
+      defaultValue="1080p"
+      name="resolution"
+    />
+  </>,
 );

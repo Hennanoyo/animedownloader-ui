@@ -6,6 +6,9 @@ test.describe("Select", () => {
   });
 
   test("opens, exposes listbox semantics, and selects an option", async ({ page }) => {
+    const priorField = page.getByRole("textbox", { name: "Previously focused field" });
+    await priorField.focus();
+
     const trigger = page.getByRole("button", { name: /Resolution/ });
     await trigger.click();
 

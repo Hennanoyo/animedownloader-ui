@@ -191,13 +191,16 @@ function SelectPopup({
   });
 
   const { listBoxProps } = useListBox(
-    menuProps,
+    {
+      ...menuProps,
+      autoFocus: state.focusStrategy ?? "first",
+    },
     state as unknown as ListState<SelectOption>,
     listBoxRef,
   );
 
   return (
-    <FocusScope restoreFocus autoFocus>
+    <FocusScope restoreFocus>
       <div
         {...mergeProps(dismissProps, positionProps)}
         ref={overlayRef}
