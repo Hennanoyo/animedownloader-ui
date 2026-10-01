@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { HTMLAttributes, ReactNode, RefObject } from "react";
 import { useRef } from "react";
 import { createPortal } from "react-dom";
 import {
@@ -145,10 +145,10 @@ export function Select({
 
 interface SelectPopupProps {
   state: ReturnType<typeof useSelectState<SelectOption>>;
-  menuProps: React.HTMLAttributes<HTMLElement>;
-  triggerRef: React.RefObject<HTMLButtonElement | null>;
-  overlayRef: React.RefObject<HTMLDivElement | null>;
-  listBoxRef: React.RefObject<HTMLUListElement | null>;
+  menuProps: HTMLAttributes<HTMLElement>;
+  triggerRef: RefObject<HTMLButtonElement | null>;
+  overlayRef: RefObject<HTMLDivElement | null>;
+  listBoxRef: RefObject<HTMLUListElement | null>;
 }
 
 function SelectPopup({
