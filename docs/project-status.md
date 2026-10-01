@@ -17,7 +17,7 @@ This repository owns reusable, domain-neutral low-level UI primitives, design to
 ## Completed primitive increments
 Select is integrated through PR #3, with validation-specific coverage in PR #6. The final Select CI passed both Check and Browser.
 
-The official React Aria Agent Skill is source-controlled as the complete 168-file tree under `.agents/skills/react-aria/`. The supplied source archive was verified byte-for-byte against the official Skills CLI output; project-specific rules are kept separately in `.agents/skills/react-aria-project-overlay.md`.
+The official React Aria Agent Skill is source-controlled as the complete 168-file tree under `.agents/skills/react-aria/`. PR #8 verified the supplied source archive byte-for-byte against the official Skills CLI output; project-specific rules are kept separately in `.agents/skills/react-aria-project-overlay.md`.
 
 ## Next implementation-ready increment
 Implement the domain-neutral Combobox primitive. Start by reading `.agents/skills/react-aria/SKILL.md`, `.agents/skills/react-aria-project-overlay.md`, and the vendored useComboBox / useComboBoxState references before defining the public API.
