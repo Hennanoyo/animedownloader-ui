@@ -30,6 +30,25 @@ describe("Select", () => {
     expect(trigger).toHaveFocus();
   });
 
+  test("wires validation state and error message to the field", () => {
+    render(
+      <Select
+        label="Example"
+        items={options}
+        defaultValue="one"
+        isInvalid
+        errorMessage="Choose a valid option."
+      />,
+    );
+
+    const trigger = screen.getByRole("button", { name: /Example/ });
+    const field = trigger.closest("[data-invalid='true']");
+
+    expect(screen.getByText("Choose a valid option.")).toBeInTheDocument();
+    expect(field).not.toBeNull();
+    expect(trigger).toHaveAccessibleName(/Example/);
+  });
+
   test("does not select disabled options", async () => {
     const user = userEvent.setup();
     render(<Select label="Example" items={options} defaultValue="one" />);
