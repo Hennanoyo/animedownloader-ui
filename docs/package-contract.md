@@ -91,3 +91,7 @@ The package contract is the boundary between repositories.
 Breaking changes to exported component props, option/value types, form semantics, or documented behavior require migration notes and a coordinated application change.
 
 Application code should not remove the legacy primitive until a published version satisfying this contract has been validated in `animedownloader`.
+
+## Publication
+
+The publication target and release procedure are documented in `docs/release/npm.md`. The first intended application-consumable version is `0.1.0`, and the published stylesheet entry is part of that release contract.
