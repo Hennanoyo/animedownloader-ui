@@ -42,9 +42,12 @@ describe("Select", () => {
     );
 
     const trigger = screen.getByRole("button", { name: /Example/ });
+    const hiddenSelect = screen.getByRole("combobox", { hidden: true });
+
     expect(screen.getByText("Choose a valid option.")).toBeInTheDocument();
-    expect(trigger).toHaveAttribute("aria-invalid", "true");
-    expect(trigger).toHaveAttribute("aria-describedby");
+    expect(hiddenSelect).toHaveAttribute("aria-invalid", "true");
+    expect(hiddenSelect).toHaveAccessibleName("Example");
+    expect(trigger).toHaveAccessibleName(/Example/);
   });
 
   test("does not select disabled options", async () => {
