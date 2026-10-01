@@ -7,7 +7,7 @@ The repository is the independent low-level UI system for `animedownloader`.
 Issue #1 — Establish AI-native UI system and build React Aria + React Stately Select/Combobox
 
 ## Current phase
-Phase 4 — Combobox
+Phase 5 — AI usage Skills and migration contract
 
 ## Completed since the previous snapshot
 - Repository AI/tooling foundation integrated through PR #2.
@@ -15,16 +15,18 @@ Phase 4 — Combobox
 - Select integrated through PR #3.
 - Select validation-specific test coverage integrated through PR #6.
 - Final Select CI passed Check and Browser.
+- Domain-neutral ComboBox integrated through PR #9.
+- ComboBox final Check and Browser CI passed after fixing a state-only filter API typing issue, aligning tests with the default `menuTrigger="input"` semantics, and wiring option `isDisabled` into React Stately `disabledKeys`.
 
 ## Next implementation boundary
-Implement the domain-neutral Combobox primitive.
+Finalize the stable Select/ComboBox public API and migration guidance for `animedownloader`.
 
 Before coding:
 1. read `.agents/skills/react-aria/SKILL.md`;
 2. read `.agents/skills/react-aria-project-overlay.md`;
-3. inspect the vendored useComboBox, useComboBoxState, useListBox, useOption, and overlay references under `.agents/skills/react-aria/references/`;
-4. inspect the legacy product ComboBox in `animedownloader` only as migration input;
-5. define the public domain-neutral contract before copying behavior.
+3. review `docs/components/select.md` and `docs/components/combobox.md`;
+4. inspect the current package exports and version/release contract;
+5. inspect `animedownloader#383` only as migration input and keep product/domain composition in the application repository.
 
 ## Important constraints
 - React Aria + React Stately are the low-level foundation.
